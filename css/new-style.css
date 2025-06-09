@@ -1,0 +1,625 @@
+.no-padding-x{
+    padding-inline: 0;
+}
+
+.section-gap{
+    margin-top: 50px;
+}
+
+
+.product-content .product-brand {
+    font-size: .75rem;
+    color: var(--grey-color-text);
+    padding-block: 2px 5px;
+}
+
+.product-content .product-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1rem;
+    padding-block: 0 5px;
+}
+
+.product-content .ratings {
+    font-size: 16px;
+    color: var(--primary-color);
+    line-height: 1;
+}
+
+.product-content .price-box{
+    margin: 7px 0;
+}
+
+.promo-banner{}
+
+.promo-banner-button{
+    width: 180px;
+    height: 60px;
+    background: transparent;
+    border: 1px solid #1E1E1E;
+    font-size: 1.125rem;
+    line-height: 60px;
+    font-weight: 700;
+    outline: 1px solid #1E1E1E;
+    outline-offset: -6px;
+    /* transition: all 0.4s linear; */
+    display: inline-block;
+    text-align: center;
+    color: var(--text-color-black);
+}
+
+.promo-banner-left:hover .banner-text *,
+.promo-banner-right:hover .banner-text *{
+    color: var(--white);
+
+}
+
+.promo-banner-left:hover .promo-banner-button,
+.promo-banner-right:hover .promo-banner-button{
+    color: var(--white);
+    border: 1px solid var(--white);
+    outline: 1px solid var(--white);
+}
+
+.promo-banner-button:hover{
+    border: 1px solid var(--white);
+    color: var(--white);
+    outline: 1px solid var(--white);
+}
+
+.promo-banner-left .banner-text{
+    text-align: var(--text-right);
+}
+
+.testimonial_holder{
+    gap: 20px;
+}
+
+.testimonial_block{
+    padding: 0 20px;
+}
+
+.testimonial-area .slick-dots{
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.testimonial-area .slick-dots li{
+    margin: 0 10px 0 0;
+    border-radius: 5px;
+}
+
+.testimonial-area .slick-dots li button{
+    width: 20px;
+    height: 5px;
+    background:#ddd;
+    border-radius: 5px;
+    color: transparent;
+}
+
+.testimonial-area .slick-dots li.slick-active button{
+   background:var(--primary-color);
+}
+
+.top-seller-carousel h6.product-name a.product-link{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/*********** INDEX PAGE CSS ENDS HERE ********************/
+
+
+/*********** COMMON PAGE CSS STARTS HERE *****************/
+.breadcrumb-area{
+    background: #eeeeee;
+}
+
+.breadcrumb-wrap {
+    padding: 15px 0;
+}
+
+.breadcrumb-wrap nav .breadcrumb{
+    justify-content: flex-start;
+}
+
+
+#toaster-message{
+    display: none; /* Hidden by default */
+    position: fixed; /* Stays in place even when scrolling */
+    bottom: 20px; /* 20px from the bottom */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for perfect centering */
+    background-color: #4CAF50; /* Default green for success */
+    color: white; /* White text */
+    padding: 15px 25px; /* Some padding */
+    border-radius: 8px; /* Rounded corners */
+    z-index: 9999; /* High z-index to be on top of everything */
+    text-align: center; /* Center text */
+    font-family: 'Inter', sans-serif; /* Recommended font */
+    font-size: 16px;
+    opacity: 0; /* Start with 0 opacity for fade-in/out */
+    transition: opacity 0.3s ease-in-out; /* Smooth transition for opacity */
+    min-width: 250px; /* Minimum width */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+
+nav.navbar.navbar-expand-lg.sticky-top.header-main-area.sticky{
+    padding: 0;
+}
+
+.header-configure-area li a{
+    font-size: 25px;
+    line-height: 1;
+    color: #333333;
+    position: relative;
+}
+
+.header-configure-area li a:hover{
+    color: var(--primary-color);
+}
+
+.navbar-nav.ms-auto.header-configure-area{
+    flex-direction: row;
+}
+
+.navbar-nav.ms-auto.header-configure-area .nav-link{
+    padding-right: .5rem;
+    padding-left: .5rem;
+}
+
+button.navbar-toggler{
+    padding: 0;
+}
+
+/*********** COMMON PAGE CSS ENDS HERE *****************/
+
+
+/********** SHOP PAGE CSS STARTS HERE ***************/
+/* Add to new-style.css */
+
+/* General Sidebar Styling for Filters */
+.sidebar-wrapper {
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #fcfcfc;
+}
+
+.sidebar-single {
+    margin-bottom: 30px;
+}
+
+.sidebar-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* For Category and Size filters */
+.sidebar-single .product-categories li a,
+.sidebar-single .size-filter li a {
+    display: block;
+    padding: 8px 15px;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.sidebar-single .product-categories li a.active,
+.sidebar-single .size-filter li a.active,
+.sidebar-single .product-categories li a:hover,
+.sidebar-single .size-filter li a:hover {
+    background-color: var(--primary-color); /* Your theme's primary color */
+    color: #fff;
+    border-color: var(--primary-color);
+}
+
+.sidebar-single .size-filter li {
+    flex: 0 0 calc(33.33% - 10px); /* 3 items per row with spacing */
+    margin: 5px;
+}
+
+.sidebar-single .size-filter li a {
+    padding: 5px 0; /* Adjust padding for smaller buttons */
+    font-size: 0.9em;
+}
+
+/* Price Range Slider Info */
+.price-range-info {
+    font-size: 0.95em;
+    color: #555;
+    text-align: center;
+}
+
+/* Product Grid Layout */
+.shop-product-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Responsive grid */
+    gap: 30px; /* Spacing between products */
+}
+
+/* No products found message */
+.no-products-message {
+    color: #777;
+    font-style: italic;
+}
+
+/* Shop Top Bar (for product count) */
+.shop-top-bar {
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.shop-top-bar .total-products-found {
+    font-weight: 500;
+    color: #555;
+}
+
+/* Checkout summary flexbox items (already provided, ensuring consistency) */
+.order-summary-table .order-summary-items {
+    max-height: 300px; /* Adjust as needed */
+    overflow-y: auto; /* Enable scrolling if many items */
+    margin-bottom: 15px;
+}
+
+.order-summary-table .order-summary-header,
+.order-summary-table .order-summary-footer {
+    padding: 10px 0;
+}
+
+.order-summary-table .product-info {
+    word-break: break-word; /* Ensures long words break and wrap */
+}
+
+.order-summary-table .product-details {
+    display: block; /* Puts size and quantity on a new line if product name is long */
+    font-size: 0.85em;
+    color: #666;
+}
+
+.order-summary-table .item-total-price {
+    white-space: nowrap; /* Prevents price from wrapping */
+}
+
+/* Custom dashed border for items, replace existing if any */
+.border-bottom-dashed {
+    border-bottom: 1px dashed #ddd !important; /* Adjust color as needed */
+}
+
+/* For product name link in checkout (already provided, ensuring consistency) */
+.product-name-link {
+    text-decoration: none;
+    color: inherit; /* Inherit color from parent */
+}
+
+.product-name-link:hover {
+    color: var(--primary-color); /* Change color on hover for clickability */
+    text-decoration: underline;
+}
+/********** SHOP PAGE CSS ENDS HERE *****************/
+
+
+/*********** PRODUCT-DETAILS PAGE CSS STARTS HERE *****************/
+.shoe_size{
+    display: flex;
+    gap: 10px;
+}
+
+.shoe_size li{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid var(--grey-color-text);
+    color: var(--grey-color-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .875rem;
+    font-weight: 800;
+    cursor: pointer;
+
+    transition: all .4s linear;
+}
+
+.shoe_size li:hover,
+.shoe_size li.selected{
+    background: var(--primary-color);
+    color: var(--white);
+    border: 1px solid var(--primary-color);
+}
+
+/*********** PRODUCT-DETAILS PAGE CSS ENDS HERE *****************/
+
+
+/*********** CART PAGE CSS STARTS HERE *****************/
+.pro-qt{
+    padding: 0 10px;
+}
+
+.pro-qty button,
+.pro-qty button:hover{
+    padding: 0;
+    margin: 0;
+    width: auto;
+    font-size: 1.25rem;
+    border: none;
+    outline: none;
+    font-weight: 700;
+    background: transparent !important;
+    color: var(--primary-color) !important;
+}
+
+
+
+/* --- Styles for Cart Page (new-style.css) --- */
+
+.cart-table-area table {
+    width: 100%;
+    margin-bottom: 30px;
+    border-collapse: collapse;
+}
+
+.cart-table-area th,
+.cart-table-area td {
+    padding: 15px;
+    vertical-align: middle;
+    border: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+.cart-table-area th {
+    background-color: #f8f8f8;
+    font-weight: 600;
+    color: #333;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+.cart-table-area .pro-thumbnail img {
+    max-width: 80px;
+    height: auto;
+    border: 1px solid #eee;
+    padding: 3px;
+}
+
+.cart-table-area .pro-title a {
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.cart-table-area .pro-title a:hover {
+    color: var(--primary-color); /* Your theme's primary color */
+}
+
+.cart-table-area .pro-title p {
+    font-size: 0.85em;
+    color: #777;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+
+/* Quantity controls */
+.quantity-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pro-qty-2 {
+    display: flex;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden; /* Ensures borders look clean */
+    width: 100px; /* Fixed width for quantity box */
+}
+
+.pro-qty-2 .qtybtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    color: #555;
+    font-size: 1.2em;
+    font-weight: bold;
+    user-select: none;
+    transition: background-color 0.2s ease;
+}
+
+.pro-qty-2 .qtybtn:hover {
+    background-color: #e0e0e0;
+}
+
+.pro-qty-2 input {
+    width: calc(100% - 60px); /* Adjust based on qtybtn width */
+    height: 30px;
+    text-align: center;
+    border: none;
+    background-color: #fff;
+    font-weight: 500;
+    font-size: 1em;
+    color: #333;
+    -moz-appearance: textfield; /* Hide arrows for Firefox */
+}
+
+.pro-qty-2 input::-webkit-outer-spin-button,
+.pro-qty-2 input::-webkit-inner-spin-button {
+    -webkit-appearance: none; /* Hide arrows for Chrome, Safari */
+    margin: 0;
+}
+
+
+.cart-table-area .pro-remove a {
+    color: var(--text-color-blackt);
+    font-size: 1.2em;
+    transition: color 0.3s ease;
+}
+
+.cart-table-area .pro-remove a:hover {
+    color: var(--primary-color);
+}
+
+/* Cart Update/Clear buttons */
+.cart-update-action .btn-sqr {
+    background-color: var(--primary-color); /* Primary color */
+    color: #fff;
+    border: 1px solid var(--primary-color);
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-decoration: none; /* For continue shopping link */
+}
+
+.cart-update-action .btn-sqr:hover {
+    background-color: #e09000;
+    border-color: #e09000;
+}
+
+/* Cart Calculator Wrapper */
+.cart-calculator-wrapper {
+    background-color: #fcfcfc;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 30px;
+}
+
+.cart-calculator-wrapper h5 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.cart-calculator-wrapper table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.cart-calculator-wrapper table td,
+.cart-calculator-wrapper table th {
+    padding: 10px 0;
+    border-top: 1px solid #eee;
+    text-align: left;
+}
+
+.cart-calculator-wrapper table td:last-child,
+.cart-calculator-wrapper table th:last-child {
+    text-align: right;
+}
+
+.cart-calculator-wrapper table tr.total th,
+.cart-calculator-wrapper table tr.total td {
+    font-weight: 700;
+    font-size: 1.1em;
+    color: #333;
+    border-top: 2px solid #ddd;
+}
+
+.shipping-type li {
+    list-style: none;
+    padding: 5px 0;
+}
+
+.shipping-type .custom-control-label {
+    font-weight: normal;
+    color: #555;
+}
+
+.cart-empty-row {
+    background-color: #fff;
+}
+/*********** CART PAGE CSS ENDS HERE *****************/
+
+
+
+
+/*********** CHECKUT PAGE CSS STARTS HERE **********/
+.order-summary-table .order-summary-items {
+    max-height: 300px; /* Adjust as needed */
+    overflow-y: auto; /* Enable scrolling if many items */
+    border-bottom: 1px dashed #eee; /* For consistency */
+    margin-bottom: 15px;
+}
+
+.order-summary-table .order-summary-header,
+.order-summary-table .order-summary-footer {
+    padding: 10px 0;
+}
+
+.order-summary-table .product-info {
+    word-break: break-word; /* Ensures long words break and wrap */
+}
+
+.order-summary-table .product-details {
+    display: block; /* Puts size and quantity on a new line if product name is long */
+    font-size: 0.85em;
+    color: #666;
+}
+
+.order-summary-table .item-total-price {
+    white-space: nowrap; /* Prevents price from wrapping */
+}
+
+/* Custom dashed border for items, replace existing if any */
+.border-bottom-dashed {
+    border-bottom: 1px dashed #ddd !important; /* Adjust color as needed */
+}
+
+
+.accordion-button:not(.collapsed) {
+    color: #fff;
+    background-color: #ff916d;
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .125);
+}
+
+.accordion-button:focus {
+    z-index: 3;
+    border-color: #ff916d;
+    outline: 0;
+    box-shadow: 0 0 0 .25rem #ff916d;
+}
+
+.checkout-form .row:nth-child(1) .col-md-6 .single-input-item{
+    margin-top: 0;
+}
+
+/************ CHECKOUT PAGE CSS ENDS HERE ****************/
+
+
+
+
+@media only screen and (max-width: 767px) {
+    button.navbar-toggler{
+        position: absolute;
+        right: 20px;
+        border:1px solid #f00
+    }
+
+    ul.navbar-nav.ms-auto.header-configure-area{
+        position: absolute;
+        right: 60px;
+    }
+}

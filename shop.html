@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="meta description">
+    <title>Juan - Shop All Products</title>
+    <!--=== Favicon ===-->
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+    <!-- Price Range Slider CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css" />
+
+
+    <!--=== Main Style CSS ===-->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/new-style.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+<script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+
+    <header class="header-area">
+        <div class="header-top">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <div class="welcome-message">
+                            <p>We ship nationwide. 30-day return policy. Free standard shipping on orders over ₹1500.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg sticky-top header-main-area sticky">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="images/header-logo.svg" alt="Your Logo">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#mainNavbarCollapse" aria-controls="mainNavbarCollapse" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse main-menu" id="mainNavbarCollapse">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html?category=Formal">Formals</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html?category=Casual">Casuals</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html?category=Sports">Sports</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact-us.html">About Us</a></li>
+                    </ul>
+
+                </div>
+
+                <ul class="navbar-nav ms-auto header-configure-area">
+                    <li class="nav-item">
+                        <a class="nav-link offcanvas-btn" href="#">
+                            <i class="ion-ios-search-strong"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link offcanvas-btn" href="#">
+                            <i class="ion-android-favorite-outline"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link minicart-btn" href="cart.html">
+                            <i class="ion-bag"></i>
+                            <div class="notification"></div>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+    </header>
+
+    <!-- main wrapper start -->
+    <main>
+        <!-- breadcrumb area start -->
+        <div class="breadcrumb-area bg-img" data-bg="assets/img/banner/breadcrumb-banner.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumb-wrap text-center">
+                            <nav aria-label="breadcrumb">
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Shop</li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- breadcrumb area end -->
+
+        <!-- shop main wrapper start -->
+        <div class="shop-main-wrapper section-gap">
+            <div class="container">
+                <div class="row">
+                    <!-- sidebar area start -->
+                    <div class="col-lg-3 order-2 order-lg-1">
+                        <div class="sidebar-wrapper mt-md-100 mt-sm-100">
+                            <!-- single sidebar start -->
+                            <div class="sidebar-single">
+                                <h4 class="sidebar-title">Categories</h4>
+                                <div class="sidebar-body">
+                                    <ul class="product-categories">
+                                        <li><a href="#" data-category="All" class="category-filter active">All
+                                                Products</a></li>
+                                        <li><a href="#" data-category="formal" class="category-filter">Formal</a></li>
+                                        <li><a href="#" data-category="casual" class="category-filter">Casual</a></li>
+                                        <li><a href="#" data-category="sports" class="category-filter">Sports</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- single sidebar end -->
+
+                            <!-- single sidebar start -->
+                            <div class="sidebar-single">
+                                <h4 class="sidebar-title">Filter by Size</h4>
+                                <div class="sidebar-body">
+                                    <ul class="size-filter d-flex flex-wrap">
+                                        <!-- Sizes will be dynamically loaded here by JS -->
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- single sidebar end -->
+
+                            <!-- single sidebar start -->
+                            <div class="sidebar-single">
+                                <h4 class="sidebar-title">Filter by Price</h4>
+                                <div class="sidebar-body">
+                                    <div class="price-filter">
+                                        <input type="text" id="price-range-slider" name="price_range" value="" />
+                                        <div class="price-range-info mt-2">
+                                            Price: <span id="min-price-display">₹0</span> - <span
+                                                id="max-price-display">₹5000</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- single sidebar end -->
+                        </div>
+                    </div>
+                    <!-- sidebar area end -->
+
+                    <!-- shop product wrapper start -->
+                    <div class="col-lg-9 order-1 order-lg-2">
+                        <div class="shop-product-wrapper">
+                            <div class="shop-top-bar d-flex justify-content-between align-items-center">
+                                <p class="total-products-found">Showing <span>0</span> products</p>
+                                <!-- You can add sorting options here if needed -->
+                            </div>
+
+                            <div class="shop-product-content row" id="product-list-container">
+                                <!-- Products will be dynamically loaded here by JS -->
+                                <div class="col-12 text-center py-5 no-products-message d-none">
+                                    <h3>No products found matching your filters.</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- shop product wrapper end -->
+                </div>
+            </div>
+        </div>
+        <!-- shop main wrapper end -->
+    </main>
+    <!-- main wrapper end -->
+
+    <!-- Start Footer Area Wrapper -->
+    <footer class="footer-wrapper">
+        <!-- footer main area start -->
+        <div class="footer-widget-area section-padding">
+            <div class="container">
+                <div class="row mtn-40">
+                    <!-- footer widget item start -->
+                    <div class="col-xl-5 col-lg-3 col-md-6">
+                        <div class="widget-item mt-40">
+                            <h5 class="widget-title">My Account</h5>
+                            <div class="widget-body">
+                                <ul class="location-wrap">
+                                    <li>
+                                        <span><i class="ion-ios-location-outline"></i></span>
+                                        <p><strong>FOOTSHOP™ Pvt. Ltd.</strong><br>
+                                            4th Floor, Lotus Corporate Park,<br>
+                                            Goregaon East, Mumbai – 400063, Maharashtra, India<br></p>
+                                    </li>
+
+                                    <li>
+                                        <span><i class="ion-ios-email-outline"></i></span>
+                                        <p>Mail Us:
+                                            <a href="mailto:footshop@gmail.com">footshop@gmail.com</a>
+                                        </p>
+                                    </li>
+
+                                    <li>
+                                        <span><i class="ion-ios-telephone-outline"></i></span>
+                                        <p>Phone: <a href="+919876543210">+91 98765 43210</a></p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- footer widget item end -->
+
+                    <!-- footer widget item start -->
+                    <div class="col-xl-2 col-lg-3 col-md-6">
+                        <div class="widget-item mt-40">
+                            <h5 class="widget-title">Categories</h5>
+                            <div class="widget-body">
+                                <ul class="useful-link">
+                                    <li><a href="javascript:void(0);">Shop</a></li>
+                                    <li><a href="javascript:void(0);">Formals</a></li>
+                                    <li><a href="javascript:void(0);">Casuals</a></li>
+                                    <li><a href="javascript:void(0);">Sports</a></li>
+                                    <li><a href="javascript:void(0);">Testimonials</a></li>
+                                    <li><a href="javascript:void(0);">Online Support</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- footer widget item end -->
+
+                    <!-- footer widget item start -->
+                    <div class="col-xl-2 col-lg-3 col-md-6">
+                        <div class="widget-item mt-40">
+                            <h5 class="widget-title">Information</h5>
+                            <div class="widget-body">
+                                <ul class="useful-link">
+                                    <li><a href="javascript:void(0);">Home</a></li>
+                                    <li><a href="javascript:void(0);">About Us</a></li>
+                                    <li><a href="javascript:void(0);">Contact Us</a></li>
+                                    <li><a href="javascript:void(0);">Returns & Exchanges</a></li>
+                                    <li><a href="javascript:void(0);">Shipping & Delivery</a></li>
+                                    <li><a href="javascript:void(0);">Privacy Policy</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- footer widget item end -->
+
+                    <!-- footer widget item start -->
+                    <div class="col-xl-2 col-lg-3 offset-xl-1 col-md-6">
+                        <div class="widget-item mt-40">
+                            <h5 class="widget-title">Quick Links</h5>
+                            <div class="widget-body">
+                                <ul class="useful-link">
+                                    <li><a href="javascript:void(0);">Store Location</a></li>
+                                    <li><a href="javascript:void(0);">My Account</a></li>
+                                    <li><a href="javascript:void(0);">Orders Tracking</a></li>
+                                    <li><a href="javascript:void(0);">Size Guide</a></li>
+                                    <li><a href="javascript:void(0);">Shopping Rates</a></li>
+                                    <li><a href="javascript:void(0);">Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- footer widget item end -->
+                </div>
+            </div>
+        </div>
+        <!-- footer main area end -->
+
+        <!-- footer bottom area start -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 order-2 order-md-1">
+                        <div class="copyright-text text-center text-md-start">
+                            <p>&copy; 2024 FOOTSHOP™. All rights reserved. Unauthorized use is prohibited.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 order-1 order-md-2">
+                        <div class="footer-social-link text-center text-md-end">
+                            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-linkedin"></i></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer bottom area end -->
+
+    </footer>
+    <!-- End Footer Area Wrapper -->
+
+    <!-- Scroll to top start -->
+    <div class="scroll-top not-visible">
+        <i class="fa fa-angle-up"></i>
+    </div>
+    <!-- Scroll to Top End -->
+
+    <!-- Toaster Message Container -->
+    <div id="toaster-message" ">
+    </div>
+    <!-- End Toaster Message Container -->
+
+    <!--=======================Javascript============================-->
+    <!--=== All Vendor Js ===-->
+    <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+        <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+        <!-- Price Range Slider JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+
+
+        <!--=== All Plugins Js ===-->
+        <!-- <script src="js/plugins.js"></script> -->
+        <!--=== Active Js ===-->
+        <script src="js/active.js"></script>
+        <script src="js/add-to-cart-handler.js"></script> <!-- Required for add to cart from listing -->
+        <script src="js/shop-handler.js"></script> <!-- NEW JS FILE -->
+
+</body>
+
+</html>

@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="meta description">
+    <title>Juan - Shoes Store HTML Template</title>
+    <!--=== Favicon ===-->
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+    <!--=== Main Style CSS ===-->
+    <link href="css/style.css" rel="stylesheet">
+
+    <link href="css/new-style.css" rel="stylesheet">
+
+
+    <!--[if lt IE 9]>
+<script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+
+    <header class="header-area">
+        <div class="header-top">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <div class="welcome-message">
+                            <p>We ship nationwide. 30-day return policy. Free standard shipping on orders over ₹1500.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg sticky-top header-main-area sticky">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="images/header-logo.svg" alt="Your Logo">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#mainNavbarCollapse" aria-controls="mainNavbarCollapse" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse main-menu" id="mainNavbarCollapse">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html?category=Formal">Formals</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html?category=Casual">Casuals</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html?category=Sports">Sports</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact-us.html">About Us</a></li>
+                    </ul>
+
+                </div>
+
+                <ul class="navbar-nav ms-auto header-configure-area">
+                    <li class="nav-item">
+                        <a class="nav-link offcanvas-btn" href="#">
+                            <i class="ion-ios-search-strong"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link offcanvas-btn" href="#">
+                            <i class="ion-android-favorite-outline"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link minicart-btn" href="cart.html">
+                            <i class="ion-bag"></i>
+                            <div class="notification"></div>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- main wrapper start -->
+    <main>
+        <!-- hero slider section start -->
+        <section class="hero-slider">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 no-padding-x">
+                        <div class="hero-slider-active slick-arrow-style slick-arrow-style_hero slick-dot-style">
+                            <!-- single slider item start -->
+                            <div class="hero-single-slide">
+                                <div class="hero-slider-item bg-img" data-bg="images/slider-2.png">
+                                    <div class="hero-slider-content slide-1">
+                                        <h5 class="slide-subtitle">Top Selling!</h5>
+                                        <h2 class="slide-title">New Collection</h2>
+                                        <p class="slide-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                            sed do eiusmod tempor incidid</p>
+                                        <a href="shop.html" class="btn btn-hero">SHOP NOW</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- single slider item end -->
+
+                            <!-- single slider item start -->
+                            <div class="hero-single-slide">
+                                <div class="hero-slider-item bg-img" data-bg="images/slider-1.png">
+                                    <div class="hero-slider-content slide-1">
+                                        <h5 class="slide-subtitle">Best Selling!</h5>
+                                        <h2 class="slide-title">Top Collection</h2>
+                                        <p class="slide-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                            sed do eiusmod tempor incidid</p>
+                                        <a href="shop.html" class="btn btn-hero">SHOP NOW</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- single slider item end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- hero slider section end -->
+
+
+        <!-- our-features-area start -->
+        <section class="our-features-area section-gap">
+            <div class="container">
+                <div class="row">
+
+
+                    <div class="our-feature-item col-4" id="formals">
+                        <div class="our-feature-thumb">
+                            <img src="images/blog-1.jpg" alt="blog thumb">
+                        </div>
+                        <div class="our-feature-content">
+                            <h5 class="our-feature-title">
+                                MEN'S FORMAL
+                                <span>Starts form ₹ 2,059</span>
+                            </h5>
+                        </div>
+                    </div>
+
+
+                    <div class="our-feature-item col-4" id="sports">
+                        <div class="our-feature-thumb">
+                            <img src="images/blog-2.jpg" alt="blog thumb">
+                        </div>
+                        <div class="our-feature-content">
+                            <h5 class="our-feature-title">
+                                MEN'S SPORTS
+                                <span>Starts form ₹ 2,059</span>
+                            </h5>
+
+                        </div>
+                    </div>
+
+                    <div class="our-feature-item col-4" id="casuals">
+                        <div class="our-feature-thumb">
+                            <img src="images/blog-3.jpg" alt="blog thumb">
+                        </div>
+                        <div class="our-feature-content">
+                            <h5 class="our-feature-title">
+                                MEN'S CASUALS
+                                <span>Starts form ₹ 2,059</span>
+                            </h5>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+        <!-- our-features-area end -->
+
+
+        <!-- our product area start -->
+        <section class="our-product section-gap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title text-center">
+                            <h2 class="title">Our Product</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+
+                        <div class="product-carousel-4 mbn-50 slick-row-15 slick-arrow-style">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- our product area end -->
+
+        <!-- banner statistic area start -->
+        <div class="banner-statistics promo-banner section-gap">
+            <div class="container">
+                <div class="row mtn-30">
+                    <div class="col-md-6 promo-banner-left">
+                        <div class="img-container mt-30">
+                            <a class="d-block" href="product-details.html">
+                                <img class="w-100" src="images/banner-1.jpg" alt="banner-image">
+                            </a>
+                            <div class="banner-text">
+                                <h5 class="banner-subtitle">casual shoes</h5>
+                                <h3 class="banner-title">20% Off<br>For MEN'S CASUAL</h3>
+                                <a href="shop.html?category=Casual" class="promo-banner-button">SHOP NOW</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 promo-banner-right">
+                        <div class="img-container mt-30">
+                            <a class="d-block" href="product-details.html">
+                                <img class="w-100" src="images/banner-2.jpg" alt="banner-image">
+                            </a>
+                            <div class="banner-text">
+                                <h5 class="banner-subtitle">sports shoes</h5>
+                                <h3 class="banner-title">20% Off<br>For MEN'S SPORTS</h3>
+                                <a href="shop.html?category=Sports" class="promo-banner-button">SHOP NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- banner statistic area end -->
+
+
+
+        <!-- testimonial section start -->
+        <section class="testimonial-area section-gap">
+            <div class="container">
+                <div class="section-title text-center">
+                    <h2 class="title">Clients' Say</h2>
+                </div>
+
+                <div class="row testimonial_holder">
+
+                    <div class="slider-item col-md-6 col-12 testimonial_block">
+                        <div class="testimonial-item">
+                            <div class="testimonial-thumb">
+                                <img src="images/tm-1.jpg" alt="client thumb">
+                            </div>
+                            <div class="testimonial-content">
+                                <h5 class="client">Rajeev Menon – Bengaluru</h5>
+                                <p>I ordered formal shoes for office use. Excellent comfort and fast delivery. The fit
+                                    is just right. Will definitely buy
+                                    again!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slider-item col-md-6 col-12 testimonial_block">
+                        <div class="testimonial-item">
+                            <div class="testimonial-thumb">
+                                <img src="images/tm-2.jpg" alt="client thumb">
+                            </div>
+                            <div class="testimonial-content">
+                                <h5 class="client">Neha Sharma – Delhi</h5>
+                                <p>Stylish and super light! I wore them to a party and everyone complimented my look.
+                                    Thank you for the great service!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slider-item col-md-6 col-12 testimonial_block">
+                        <div class="testimonial-item">
+                            <div class="testimonial-thumb">
+                                <img src="images/tm-3.jpg" alt="client thumb">
+                            </div>
+                            <div class="testimonial-content">
+                                <h5 class="client">Ankit Verma – Lucknow</h5>
+                                <p>Perfect casual shoes for daily use. Quality is better than expected at this price.
+                                    Impressed with the sole grip too!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slider-item col-md-6 col-12 testimonial_block">
+                        <div class="testimonial-item">
+                            <div class="testimonial-thumb">
+                                <img src="images/tm-4.jpg" alt="client thumb">
+                            </div>
+                            <div class="testimonial-content">
+                                <h5 class="client">Priya Desai – Mumbai</h5>
+                                <p>Love the design and packaging! Customer support was helpful with the size exchange.
+                                    Overall, a smooth experience.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slider-item col-md-6 col-12 testimonial_block">
+                        <div class="testimonial-item">
+                            <div class="testimonial-thumb">
+                                <img src="images/tm-5.jpg" alt="client thumb">
+                            </div>
+                            <div class="testimonial-content">
+                                <h5 class="client">Amitabh Roy – Kolkata</h5>
+                                <p>I’ve tried many brands, but this one nails both comfort and looks. Highly recommended
+                                    for long walks and travel!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- testimonial section end -->
+
+        <!-- top seller area start -->
+        <section class="top-seller-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title text-center">
+                            <h2 class="title">top seller</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-12">
+                        <div class="top-seller-carousel slick-row-15 mtn-30">
+                            <!-- product item start -->
+                            <div class="slide-item">
+                                <div class="pro-item-small mt-30">
+                                    <div class="product-thumb">
+                                        <a href="product-details.html">
+                                            <img src="images/pro-small-1.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="pro-small-content">
+                                        <h6 class="product-name">
+                                            <a href="product-details.html">Simple Fabric Shoe</a>
+                                        </h6>
+                                        <div class="price-box">
+                                            <span class="price-regular">$80.00</span>
+                                            <span class="price-old"><del>$70.00</del></span>
+                                        </div>
+                                        <div class="ratings">
+                                            <span><i class="ion-android-star"></i></span>
+                                            <span><i class="ion-android-star"></i></span>
+                                            <span><i class="ion-android-star"></i></span>
+                                            <span><i class="ion-android-star"></i></span>
+                                            <span><i class="ion-android-star"></i></span>
+                                        </div>
+                                        <div class="product-link-2">
+                                            <a href="#" data-bs-toggle="tooltip" title="Wishlist"><i
+                                                    class="ion-android-favorite-outline"></i></a>
+                                            <a href="#" data-bs-toggle="tooltip" title="Add To Cart"><i
+                                                    class="ion-bag"></i></a>
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#quick_view"> <span
+                                                    data-bs-toggle="tooltip" title="Quick View"><i
+                                                        class="ion-ios-eye-outline"></i></span> </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- product item start -->
+
+                            <!-- product item start -->
+                            <div class="slide-item">
+                                <div class="pro-item-small mt-30">
+                                    <div class="product-thumb">
+                                        <a href="product-details.html">
+                                            <img src="images/pro-small-2.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="pro-small-content">
+                                        <h6 class="product-name">
+                                            <a href="product-details.html">exclusive mens shoe</a>
+                                        </h6>
+                                        <div class="price-box">
+                                            <span class="price-regular">$80.00</span>
+                                            <span class="price-old"><del>$70.00</del></span>
+                                        </div>
+                                        <div class="ratings">
+                                            <span><i class="ion-android-star"></i></span>
+                                            <span><i class="ion-android-star"></i></span>
+                                            <span><i class="ion-android-star"></i></span>
+                                            <span><i class="ion-android-star"></i></span>
+                                            <span><i class="ion-android-star"></i></span>
+                                        </div>
+                                        <div class="product-link-2">
+                                            <a href="#" data-bs-toggle="tooltip" title="Wishlist"><i
+                                                    class="ion-android-favorite-outline"></i></a>
+                                            <a href="#" data-bs-toggle="tooltip" title="Add To Cart"><i
+                                                    class="ion-bag"></i></a>
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#quick_view"> <span
+                                                    data-bs-toggle="tooltip" title="Quick View"><i
+                                                        class="ion-ios-eye-outline"></i></span> </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- product item start -->
+
+                            <!-- product item start -->
+                            <div class="slide-item">
+                                <div class="pro-item-small mt-30">
+                                    <div class="product-thumb">
+                                        <a href="product-details.html">
+                                            <img src="images/pro-small-3.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="pro-small-content">
+                                        <h6 class="product-name">
+                                            <a href="product-details.html">Quickiin Mens shoes</a>
+                                        </h6>
+                                        <div class="price-box">
+                                            <span class="price-regular">$80.00</span>
+                                            <span class="price-old"><del>$70.00</del></span>
+                                        </div>
+                                        <div class="ratings">
+                                            <span><i class="ion-android-star"></i></span>
+                                            <span><i class="ion-android-star"></i></span>
+                                            <span><i class="ion-android-star"></i></span>
+                                            <span><i class="ion-android-star"></i></span>
+                                            <span><i class="ion-android-star"></i></span>
+                                        </div>
+                                        <div class="product-link-2">
+                                            <a href="#" data-bs-toggle="tooltip" title="Wishlist"><i
+                                                    class="ion-android-favorite-outline"></i></a>
+                                            <a href="#" data-bs-toggle="tooltip" title="Add To Cart"><i
+                                                    class="ion-bag"></i></a>
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#quick_view"> <span
+                                                    data-bs-toggle="tooltip" title="Quick View"><i
+                                                        class="ion-ios-eye-outline"></i></span> </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- product item start -->
+
+                            <!-- product item start -->
+                            <div class="slide-item">
+                                <div class="pro-item-small mt-30">
+                                    <div class="product-thumb">
+                                        <a href="product-details.html">
+                                            <img src="images/pro-small-4.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="pro-small-content">
+                                        <h6 class="product-name">
+                                            <a href="product-details.html">Primitive Men shoes</a>
+                                        </h6>
+                                        <div class="price-box">
+                                            <span class="price-regular">$80.00</span>
+                                            <span class="price-old"><del>$70.00</del></span>
+                                        </div>
+                                        <div class="ratings">
+                                            <span><i class="ion-android-star"></i></span>
+                                            <span><i class="ion-android-star"></i></span>
+                                            <span><i class="ion-android-star"></i></span>
+                                            <span><i class="ion-android-star"></i></span>
+                                            <span><i class="ion-android-star"></i></span>
+                                        </div>
+                                        <div class="product-link-2">
+                                            <a href="#" data-bs-toggle="tooltip" title="Wishlist"><i
+                                                    class="ion-android-favorite-outline"></i></a>
+                                            <a href="#" data-bs-toggle="tooltip" title="Add To Cart"><i
+                                                    class="ion-bag"></i></a>
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#quick_view"> <span
+                                                    data-bs-toggle="tooltip" title="Quick View"><i
+                                                        class="ion-ios-eye-outline"></i></span> </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- product item start -->
+
+                            <!-- product item start -->
+                            <div class="slide-item">
+                                <div class="pro-item-small mt-30">
+                                    <div class="product-thumb">
+                                        <a href="product-details.html">
+                                            <img src="images/pro-small-2.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="pro-small-content">
+                                        <h6 class="product-name">
+                                            <a href="product-details.html">Sports Mens shoes</a>
+                                        </h6>
+                                        <div class="price-box">
+                                            <span class="price-regular">$80.00</span>
+                                            <span class="price-old"><del>$70.00</del></span>
+                                        </div>
+                                        <div class="ratings">
+                                            <span><i class="ion-android-star"></i></span>
+                                            <span><i class="ion-android-star"></i></span>
+                                            <span><i class="ion-android-star"></i></span>
+                                            <span><i class="ion-android-star"></i></span>
+                                            <span><i class="ion-android-star"></i></span>
+                                        </div>
+                                        <div class="product-link-2">
+                                            <a href="#" data-bs-toggle="tooltip" title="Wishlist"><i
+                                                    class="ion-android-favorite-outline"></i></a>
+                                            <a href="#" data-bs-toggle="tooltip" title="Add To Cart"><i
+                                                    class="ion-bag"></i></a>
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#quick_view"> <span
+                                                    data-bs-toggle="tooltip" title="Quick View"><i
+                                                        class="ion-ios-eye-outline"></i></span> </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- product item start -->
+
+                            <!-- product item start -->
+                            <div class="slide-item">
+                                <div class="pro-item-small mt-30">
+                                    <div class="product-thumb">
+                                        <a href="product-details.html">
+                                            <img src="images/pro-small-3.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="pro-small-content">
+                                        <h6 class="product-name">
+                                            <a href="product-details.html">Quickiin Mens shoes</a>
+                                        </h6>
+                                        <div class="price-box">
+                                            <span class="price-regular">$80.00</span>
+                                            <span class="price-old"><del>$70.00</del></span>
+                                        </div>
+                                        <div class="ratings">
+                                            <span><i class="ion-android-star"></i></span>
+                                            <span><i class="ion-android-star"></i></span>
+                                            <span><i class="ion-android-star"></i></span>
+                                            <span><i class="ion-android-star"></i></span>
+                                            <span><i class="ion-android-star"></i></span>
+                                        </div>
+                                        <div class="product-link-2">
+                                            <a href="#" data-bs-toggle="tooltip" title="Wishlist"><i
+                                                    class="ion-android-favorite-outline"></i></a>
+                                            <a href="#" data-bs-toggle="tooltip" title="Add To Cart"><i
+                                                    class="ion-bag"></i></a>
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#quick_view"> <span
+                                                    data-bs-toggle="tooltip" title="Quick View"><i
+                                                        class="ion-ios-eye-outline"></i></span> </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- product item start -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- top seller area end -->
+
+        <!-- service features start -->
+        <section class="service-policy-area section-padding">
+            <div class="container">
+                <div class="row mtn-30">
+                    <!-- single policy item start -->
+                    <div class="col-lg-4">
+                        <div class="service-policy-item mt-30 bg-1">
+                            <div class="policy-icon">
+                                <img src="images/policy-1.png" alt="policy icon">
+                            </div>
+                            <div class="policy-content">
+                                <h5 class="policy-title">FREE SHIPPING</h5>
+                                <p class="policy-desc">Free shipping on all order</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- single policy item start -->
+
+                    <!-- single policy item start -->
+                    <div class="col-lg-4">
+                        <div class="service-policy-item mt-30 bg-2">
+                            <div class="policy-icon">
+                                <img src="images/policy-2.png" alt="policy icon">
+                            </div>
+                            <div class="policy-content">
+                                <h5 class="policy-title">ONLINE SUPPORT</h5>
+                                <p class="policy-desc">Online support 24 hours a day</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- single policy item start -->
+
+                    <!-- single policy item start -->
+                    <div class="col-lg-4">
+                        <div class="service-policy-item mt-30 bg-3">
+                            <div class="policy-icon">
+                                <img src="images/policy-3.png" alt="policy icon">
+                            </div>
+                            <div class="policy-content">
+                                <h5 class="policy-title">MONEY RETURN</h5>
+                                <p class="policy-desc">Back guarantee under 5 days</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- single policy item start -->
+                </div>
+            </div>
+        </section>
+        <!-- service features end -->
+    </main>
+    <!-- main wrapper end -->
+
+    <!-- Start Footer Area Wrapper -->
+    <footer class="footer-wrapper">
+        <!-- footer main area start -->
+        <div class="footer-widget-area section-padding">
+            <div class="container">
+                <div class="row mtn-40">
+                    <!-- footer widget item start -->
+                    <div class="col-xl-5 col-lg-3 col-md-6">
+                        <div class="widget-item mt-40">
+                            <h5 class="widget-title">My Account</h5>
+                            <div class="widget-body">
+                                <ul class="location-wrap">
+                                    <li>
+                                        <span><i class="ion-ios-location-outline"></i></span>
+                                        <p><strong>FOOTSHOP™ Pvt. Ltd.</strong><br>
+                                            4th Floor, Lotus Corporate Park,<br>
+                                            Goregaon East, Mumbai – 400063, Maharashtra, India<br></p>
+                                    </li>
+
+                                    <li>
+                                        <span><i class="ion-ios-email-outline"></i></span>
+                                        <p>Mail Us:
+                                            <a href="mailto:footshop@gmail.com">footshop@gmail.com</a>
+                                        </p>
+                                    </li>
+
+                                    <li>
+                                        <span><i class="ion-ios-telephone-outline"></i></span>
+                                        <p>Phone: <a href="+919876543210">+91 98765 43210</a></p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- footer widget item end -->
+
+                    <!-- footer widget item start -->
+                    <div class="col-xl-2 col-lg-3 col-md-6">
+                        <div class="widget-item mt-40">
+                            <h5 class="widget-title">Categories</h5>
+                            <div class="widget-body">
+                                <ul class="useful-link">
+                                    <li><a href="javascript:void(0);">Shop</a></li>
+                                    <li><a href="javascript:void(0);">Formals</a></li>
+                                    <li><a href="javascript:void(0);">Casuals</a></li>
+                                    <li><a href="javascript:void(0);">Sports</a></li>
+                                    <li><a href="javascript:void(0);">Testimonials</a></li>
+                                    <li><a href="javascript:void(0);">Online Support</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- footer widget item end -->
+
+                    <!-- footer widget item start -->
+                    <div class="col-xl-2 col-lg-3 col-md-6">
+                        <div class="widget-item mt-40">
+                            <h5 class="widget-title">Information</h5>
+                            <div class="widget-body">
+                                <ul class="useful-link">
+                                    <li><a href="javascript:void(0);">Home</a></li>
+                                    <li><a href="javascript:void(0);">About Us</a></li>
+                                    <li><a href="javascript:void(0);">Contact Us</a></li>
+                                    <li><a href="javascript:void(0);">Returns & Exchanges</a></li>
+                                    <li><a href="javascript:void(0);">Shipping & Delivery</a></li>
+                                    <li><a href="javascript:void(0);">Privacy Policy</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- footer widget item end -->
+
+                    <!-- footer widget item start -->
+                    <div class="col-xl-2 col-lg-3 offset-xl-1 col-md-6">
+                        <div class="widget-item mt-40">
+                            <h5 class="widget-title">Quick Links</h5>
+                            <div class="widget-body">
+                                <ul class="useful-link">
+                                    <li><a href="javascript:void(0);">Store Location</a></li>
+                                    <li><a href="javascript:void(0);">My Account</a></li>
+                                    <li><a href="javascript:void(0);">Orders Tracking</a></li>
+                                    <li><a href="javascript:void(0);">Size Guide</a></li>
+                                    <li><a href="javascript:void(0);">Shopping Rates</a></li>
+                                    <li><a href="javascript:void(0);">Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- footer widget item end -->
+                </div>
+            </div>
+        </div>
+        <!-- footer main area end -->
+
+        <!-- footer bottom area start -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 order-2 order-md-1">
+                        <div class="copyright-text text-center text-md-start">
+                            <p>&copy; 2024 FOOTSHOP™. All rights reserved. Unauthorized use is prohibited.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 order-1 order-md-2">
+                        <div class="footer-social-link text-center text-md-end">
+                            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-linkedin"></i></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer bottom area end -->
+
+    </footer>
+    <!-- End Footer Area Wrapper -->
+
+
+
+    <!-- Scroll to top start -->
+    <div class="scroll-top not-visible">
+        <i class="fa fa-angle-up"></i>
+    </div>
+    <!-- Scroll to Top End -->
+
+
+
+
+    <!-- Toaster Message Container -->
+    <div id="toaster-message" ">
+    </div>
+    <!-- End Toaster Message Container -->
+
+    <!--=======================Javascript============================-->
+    <!--=== All Vendor Js ===-->
+
+    <!-- <script src=" js/vendor.js">
+        </script> -->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+        <script src="js/active.js"></script>
+        <script src="js/add-to-cart-handler.js"></script>
+        <script src="js/top-products.js"></script>
+</body>
+
+</html>
