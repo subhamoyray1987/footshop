@@ -6,6 +6,24 @@
     margin-top: 50px;
 }
 
+.hero-slider-content a.btn.btn-hero{
+    width: 180px;
+    height: 60px;
+    background: transparent;
+    border: 1px solid #fff;
+    font-size: 1.125rem;
+    line-height: 60px;
+    font-weight: 700;
+    outline: 1px solid #fff;
+    outline-offset: -6px;
+    /* transition: all 0.4s linear; */
+    display: inline-block;
+    text-align: center;
+    color: #fff;
+    border-radius: 0px;
+    padding: 0;
+
+}
 
 .product-content .product-brand {
     font-size: .75rem;
