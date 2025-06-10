@@ -3363,7 +3363,7 @@ fieldset legend {
   margin-right: 15px;
 }
 .product-details-des .quantity .pro-qty {
-  width: 90px;
+  width: auto;
   height: 46px;
   border: 1px solid #ddd;
   padding: 0 15px;
@@ -4104,7 +4104,7 @@ fieldset legend {
   font-weight: 700;
 }
 .cart-calculator-wrapper a {
-  border-radius: 0;
+  /* border-radius: 0; */
   text-align: center;
 }
 

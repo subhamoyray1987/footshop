@@ -31,199 +31,195 @@ document.addEventListener("DOMContentLoaded", function() {
             applyFiltersAndRenderProducts(); // Renders products based on initial filters
         })
         .catch(error => {
-            console.error("Error fetching or parsing shoelist.json:", error);
-            productListContainer.innerHTML = `<div class="col-12 text-center py-5">
-                                                  <h3>Failed to load products. Please check console for errors.</h3>
-                                              </div>`;
+            console.error("Error fetching products:", error);
+            productListContainer.innerHTML = "<p>Error loading products. Please try again later.</p>";
+            noProductsMessage.style.display = "block"; // Show error message if products fail to load
         });
 
     function initializeFilters(products) {
-        // 1. Determine Min/Max Prices from Products
-        const prices = products.map(p => parseFloat(String(p.price).replace(/[₹,]/g, ''))).filter(p => !isNaN(p));
-        const maxProductPrice = prices.length > 0 ? Math.max(...prices) : 5000;
-        const minProductPrice = prices.length > 0 ? Math.min(...prices) : 0;
+        // Determine the overall min and max prices from the data for the slider
+        const prices = products.map(p => parseFloat(p.price.replace(/[₹,]/g, '')));
+        const minOverallPrice = Math.floor(Math.min(...prices));
+        const maxOverallPrice = Math.ceil(Math.max(...prices));
 
-        currentFilters.minPrice = minProductPrice;
-        currentFilters.maxPrice = maxProductPrice;
+        currentFilters.minPrice = minOverallPrice;
+        currentFilters.maxPrice = maxOverallPrice;
 
-        // 2. Initialize Price Range Slider
-        if (typeof jQuery !== 'undefined' && typeof jQuery().ionRangeSlider === 'function') {
+        // Initialize Ion.RangeSlider
+        if (priceRangeSlider) {
             $(priceRangeSlider).ionRangeSlider({
                 type: "double",
-                min: minProductPrice,
-                max: maxProductPrice,
-                from: minProductPrice,
-                to: maxProductPrice,
+                min: minOverallPrice,
+                max: maxOverallPrice,
+                from: currentFilters.minPrice,
+                to: currentFilters.maxPrice,
                 prefix: "₹",
-                skin: "round",
-                onStart: function(data) {
-                    minPriceDisplay.textContent = `₹${data.from.toFixed(2)}`;
-                    maxPriceDisplay.textContent = `₹${data.to.toFixed(2)}`;
-                },
-                onChange: function(data) {
+                onFinish: function(data) {
                     currentFilters.minPrice = data.from;
                     currentFilters.maxPrice = data.to;
-                    minPriceDisplay.textContent = `₹${data.from.toFixed(2)}`;
-                    maxPriceDisplay.textContent = `₹${data.to.toFixed(2)}`;
                     applyFiltersAndRenderProducts();
                 }
             });
-        } else {
-            console.warn("ionRangeSlider is not initialized. Ensure jQuery and ion.rangeSlider.min.js are loaded.");
-            if (priceRangeSlider) priceRangeSlider.closest('.sidebar-single').style.display = 'none';
+            // Update display initially
+            minPriceDisplay.textContent = `₹${currentFilters.minPrice}`;
+            maxPriceDisplay.textContent = `₹${currentFilters.maxPrice}`;
         }
 
 
-        // 3. Populate and Initialize Size Filter
-        const uniqueSizes = new Set();
-        products.forEach(p => {
-            if (p.size && Array.isArray(p.size)) {
-                // Ensure sizes are handled consistently as numbers or strings here if needed,
-                // but filter logic will convert to number
-                p.size.forEach(s => uniqueSizes.add(String(s))); // Store sizes as strings in Set for consistency
-            }
-        });
-        const sortedSizes = Array.from(uniqueSizes).sort((a, b) => parseFloat(a) - parseFloat(b));
-
-        sizeFilterContainer.innerHTML = ''; // Clear previous sizes
-        const allSizesButton = document.createElement('li');
-        allSizesButton.innerHTML = `<a href="#" data-size="all" class="size-filter-btn active">All</a>`; // Use lowercase "all"
-        sizeFilterContainer.appendChild(allSizesButton);
-
-        sortedSizes.forEach(size => {
-            const li = document.createElement('li');
-            li.innerHTML = `<a href="#" data-size="${size}" class="size-filter-btn">${size}</a>`;
-            sizeFilterContainer.appendChild(li);
-        });
-
-        // 4. Apply initial filters from URL parameters
+        // Handle URL parameters for initial filters
         const urlParams = new URLSearchParams(window.location.search);
-        const urlCategory = urlParams.get('category');
-        const urlSize = urlParams.get('size');
-        const urlMinPrice = urlParams.get('min_price');
-        const urlMaxPrice = urlParams.get('max_price');
 
-        if (urlCategory) {
-            currentFilters.category = urlCategory.toLowerCase(); // Ensure lowercase for comparison
+        const categoryParam = urlParams.get("category");
+        if (categoryParam) {
+            const normalizedCategory = categoryParam.toLowerCase();
+            currentFilters.category = normalizedCategory;
+            // Activate the corresponding category button
             categoryFilters.forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.dataset.category && btn.dataset.category.toLowerCase() === urlCategory.toLowerCase()) {
-                    btn.classList.add('active');
+                if (btn.dataset.category.toLowerCase() === normalizedCategory) {
+                    btn.classList.add("active");
+                } else {
+                    btn.classList.remove("active");
                 }
             });
+        } else {
+             // If no category param, ensure "All" is active by default
+             const allCategoryBtn = document.querySelector('.category-filter[data-category="All"]');
+             if(allCategoryBtn) allCategoryBtn.classList.add("active");
         }
 
-        if (urlSize) {
-            currentFilters.size = urlSize; // Store as string for consistency from data-attribute
-            setTimeout(() => { // Small delay to ensure dynamic elements are in DOM
-                sizeFilterContainer.querySelectorAll('.size-filter-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                    if (btn.dataset.size === urlSize) {
-                        btn.classList.add('active');
-                    }
-                });
-            }, 0);
+
+        const sizeParam = urlParams.get("size");
+        if (sizeParam) {
+            currentFilters.size = sizeParam;
+            // Activate the corresponding size button
+            sizeFilterContainer.querySelectorAll(".size-filter-btn").forEach(btn => {
+                if (btn.dataset.size === sizeParam) {
+                    btn.classList.add("active");
+                } else {
+                    btn.classList.remove("active");
+                }
+            });
+        } else {
+             // If no size param, ensure "All" size button is active by default
+             const allSizeBtn = document.querySelector('.size-filter-btn[data-size="All"]');
+             if(allSizeBtn) allSizeBtn.classList.add("active");
         }
 
-        if (urlMinPrice || urlMaxPrice) {
-            const sliderInstance = $(priceRangeSlider).data("ionRangeSlider");
-            if (sliderInstance) {
-                sliderInstance.update({
-                    from: urlMinPrice ? parseFloat(urlMinPrice) : minProductPrice,
-                    to: urlMaxPrice ? parseFloat(urlMaxPrice) : maxProductPrice
-                });
-            }
-            currentFilters.minPrice = urlMinPrice ? parseFloat(urlMinPrice) : minProductPrice;
-            currentFilters.maxPrice = urlMaxPrice ? parseFloat(urlMaxPrice) : maxProductPrice;
+        const minPriceParam = parseFloat(urlParams.get("min_price"));
+        const maxPriceParam = parseFloat(urlParams.get("max_price"));
+        if (!isNaN(minPriceParam)) {
+            currentFilters.minPrice = minPriceParam;
         }
+        if (!isNaN(maxPriceParam)) {
+            currentFilters.maxPrice = maxPriceParam;
+        }
+
+        // Update price slider if params are used
+        if ((!isNaN(minPriceParam) || !isNaN(maxPriceParam)) && priceRangeSlider) {
+             const slider = $(priceRangeSlider).data("ionRangeSlider");
+             if (slider) {
+                 slider.update({
+                     from: currentFilters.minPrice,
+                     to: currentFilters.maxPrice
+                 });
+             }
+         }
+         minPriceDisplay.textContent = `₹${currentFilters.minPrice}`;
+         maxPriceDisplay.textContent = `₹${currentFilters.maxPrice}`;
     }
-
 
     function applyFiltersAndRenderProducts() {
-        let filteredProducts = allProducts.filter(product => {
-            const productCleanPrice = parseFloat(String(product.price).replace(/[₹,]/g, ''));
+        let filteredProducts = allProducts.filter(p => {
+            const productPrice = parseFloat(p.price.replace(/[₹,]/g, ''));
+            const productCategory = p.category ? p.category.toLowerCase() : '';
+            const productSizes = Array.isArray(p.size) ? p.size.map(s => String(s)) : [];
 
-            // Category Filter: Convert both to lowercase for comparison
-            const categoryMatch = currentFilters.category === "all" ||
-                                  (product.category && product.category.toLowerCase() === currentFilters.category.toLowerCase());
+            // Category filter
+            if (currentFilters.category && currentFilters.category !== "all" && productCategory !== currentFilters.category) {
+                return false;
+            }
 
-            // Size Filter: Convert currentFilters.size to number for comparison with product.size array (which contains numbers)
-            const sizeMatch = currentFilters.size === "all" || currentFilters.size === null ||
-                             (product.size && Array.isArray(product.size) && product.size.includes(parseFloat(currentFilters.size)));
+            // Size filter
+            if (currentFilters.size && currentFilters.size !== "All" && !productSizes.includes(String(currentFilters.size))) {
+                return false;
+            }
 
+            // Price range filter
+            if (productPrice < currentFilters.minPrice || productPrice > currentFilters.maxPrice) {
+                return false;
+            }
 
-            // Price Filter
-            const priceMatch = !isNaN(productCleanPrice) &&
-                               productCleanPrice >= currentFilters.minPrice &&
-                               productCleanPrice <= currentFilters.maxPrice;
-
-            return categoryMatch && sizeMatch && priceMatch;
+            return true;
         });
 
-        renderProducts(filteredProducts);
-    }
+        // Sort products - you can add sorting logic here if needed
+        // For example:
+        // filteredProducts.sort((a, b) => parseFloat(a.price.replace(/[₹,]/g, '')) - parseFloat(b.price.replace(/[₹,]/g, '')));
 
-    function renderProducts(productsToRender) {
-        productListContainer.innerHTML = '';
-        totalProductsFoundEl.textContent = productsToRender.length;
-
-        if (productsToRender.length === 0) {
-            noProductsMessage.classList.remove("d-none");
+        productListContainer.innerHTML = ""; // Clear current products
+        if (filteredProducts.length === 0) {
+            noProductsMessage.style.display = "block"; // Show no products message
+            totalProductsFoundEl.textContent = "0"; // Update product count
             return;
         } else {
-            noProductsMessage.classList.add("d-none");
+            noProductsMessage.style.display = "none"; // Hide no products message
+            totalProductsFoundEl.textContent = filteredProducts.length; // Update product count
         }
 
-        productsToRender.forEach(p => {
-            const stars = p.rating >= 4
-                ? '<span><i class="ion-android-star"></i></span>'.repeat(5)
-                : '<span><i class="ion-android-star"></i></span>'.repeat(4) + '<span><i class="ion-android-star-outline"></i></span>';
 
-            const cleanPrice = parseFloat(String(p.price).replace(/[₹,]/g, ""));
+        filteredProducts.forEach(p => {
+            const cleanPrice = parseFloat(p.price.replace(/[₹,]/g, ''));
             let finalPrice = cleanPrice;
-            let originalPrice = "";
             let badge = "";
+            let oldPriceHTML = "";
 
             if (p.discounted && p.discount) {
                 finalPrice = Math.round(cleanPrice * (1 - p.discount / 100));
-                originalPrice = `₹${cleanPrice.toFixed(2)}`;
-                badge = `<div class="product-badge bg-danger text-white position-absolute top-0 start-0 m-2 p-1 px-2 rounded">${p.discount}% OFF</div>`;
+                badge = `<div class=\"product-badge bg-danger text-white position-absolute top-0 start-0 m-2 p-1 px-2 rounded\">${p.discount}% OFF</div>`;
+                oldPriceHTML = `<span class=\"price-old\"><del>₹${cleanPrice}</del></span>`;
             }
 
-            const defaultSize = p.size && p.size.length > 0 ? String(p.size[0]) : "One Size"; // Ensure default size is string
+            const starRating = p.rating >= 4
+                ? '<div class=\"ratings\">' + '<span><i class=\"ion-android-star\"></i></span>'.repeat(5) + '</div>'
+                : '<div class=\"ratings\">' + '<span><i class=\"ion-android-star\"></i></span>'.repeat(Math.floor(p.rating)) + '<span><i class=\"ion-android-star-half\"></i></span>'.repeat(p.rating % 1 !== 0 ? 1 : 0) + '<span><i class=\"ion-android-star-outline\"></i></span>'.repeat(5 - Math.ceil(p.rating)) + '</div>';
 
             const productHtml = `
                 <div class="col">
-                    <div class="product-item mb-50 position-relative">
-                        ${badge}
+                    <div class="product-item mb-50">
                         <div class="product-thumb">
-                            <a href="product-details.html?id=${p.id}" class="product-link">
-                                <img src="${p.images[0]}" alt="${p.title}">
+                            ${badge}
+                            <a href="product-details.html?id=${p.id}">
+                                <img src="${p.images[0]}" alt="product thumb">
                             </a>
                         </div>
                         <div class="product-content">
-                            <h5 class="product-brand">${p.brand || 'N/A'} // ${p.category || 'N/A'}</h5>
                             <h5 class="product-name">
                                 <a href="product-details.html?id=${p.id}">${p.title}</a>
                             </h5>
-                            <div class="ratings">${stars}</div>
                             <div class="price-box">
-                                <span class="price-regular">₹${finalPrice.toFixed(2)}</span>
-                                ${originalPrice ? `<span class="price-old"><del>${originalPrice}</del></span>` : ""}
+                                <span class="price-regular">₹${finalPrice}</span>
+                                ${oldPriceHTML}
                             </div>
+                            ${starRating}
                             <div class="product-action-link">
-                                <a href="#" data-bs-toggle="tooltip" title="Wishlist"><i class="ion-android-favorite-outline"></i></a>
-                                <a href="#" class="add-to-cart-btn"
+                                <a href="#" class="wishlist-btn"
                                    data-id="${p.id}"
                                    data-title="${p.title}"
-                                   data-price="${finalPrice.toFixed(2)}"
+                                   data-price="${finalPrice}"
                                    data-img="${p.images[0]}"
-                                   data-size="${defaultSize}"
-                                   data-bs-toggle="tooltip" title="Add To Cart">
-                                  <i class="ion-bag"></i>
+                                   data-bs-toggle="tooltip" title="Wishlist">
+                                    <i class="ion-android-favorite-outline"></i>
+                                </a>
+                                <a href="#" class="add-to-cart-btn"
+                                    data-id="${p.id}"
+                                    data-title="${p.title}"
+                                    data-price="${finalPrice}"
+                                    data-img="${p.images[0]}"
+                                    data-bs-toggle="tooltip" title="Add To Cart">
+                                    <i class="ion-bag"></i>
                                 </a>
                                 <a href="product-details.html?id=${p.id}">
-                                  <span data-bs-toggle="tooltip" title="Quick View"><i class="ion-ios-eye-outline"></i></span>
+                                    <span data-bs-toggle="tooltip" title="Quick View"><i class="ion-ios-eye-outline"></i></span>
                                 </a>
                             </div>
                         </div>
@@ -232,23 +228,26 @@ document.addEventListener("DOMContentLoaded", function() {
             `;
             productListContainer.insertAdjacentHTML('beforeend', productHtml);
         });
+        // Re-initialize tooltips for newly rendered products
         $('[data-bs-toggle="tooltip"]').tooltip();
     }
 
     // Event Listeners for Filters
+    // Category Filter Buttons
     categoryFilters.forEach(btn => {
         btn.addEventListener("click", function(e) {
             e.preventDefault();
-            categoryFilters.forEach(b => b.classList.remove("active"));
-            this.classList.add("active");
+            categoryFilters.forEach(b => b.classList.remove("active")); // Remove active from all
+            this.classList.add("active"); // Add active to clicked one
             currentFilters.category = this.dataset.category.toLowerCase(); // Store as lowercase
-            applyFiltersAndRenderProducts();
+            applyFiltersAndRenderProducts(); // Apply filters and re-render
         });
     });
 
+    // Size Filter Buttons (uses event delegation on parent container)
     sizeFilterContainer.addEventListener("click", function(e) {
         e.preventDefault();
-        const target = e.target.closest(".size-filter-btn");
+        const target = e.target.closest(".size-filter-btn"); // Find the clicked button or its parent
         if (target) {
             sizeFilterContainer.querySelectorAll(".size-filter-btn").forEach(b => b.classList.remove("active"));
             target.classList.add("active");
@@ -256,4 +255,7 @@ document.addEventListener("DOMContentLoaded", function() {
             applyFiltersAndRenderProducts();
         }
     });
+
+    // The initial URL parameter handling is now integrated within `initializeFilters` for better flow.
+    // This ensures `currentFilters` are set correctly before the first `applyFiltersAndRenderProducts()` call.
 });

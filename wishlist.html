@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="meta description">
     <title>FOOTSHOP - YOUR ON STORE SHOE DESTINATION</title>
+    <!--=== Favicon ===-->
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -18,10 +19,44 @@
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
+    <!--=== Main Style CSS ===-->
     <link href="css/style.css" rel="stylesheet">
+
     <link href="css/new-style.css" rel="stylesheet">
+
+
+    <!--[if lt IE 9]>
+<script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+    <style>
+        /* Custom styles for wishlist page for better spacing */
+        .wishlist-table th,
+        .wishlist-table td {
+            vertical-align: middle;
+        }
+
+        .wishlist-empty-message {
+            text-align: center;
+            padding: 50px 0;
+            font-size: 1.2em;
+            color: #777;
+        }
+
+        .wishlist-action-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+        }
+
+        .pro-thumbnail img {
+            max-width: 80px;
+            height: auto;
+        }
+    </style>
 </head>
 
 <body>
@@ -88,109 +123,55 @@
         </nav>
     </header>
 
-    <main>
-        <div class="breadcrumb-area bg-img" data-bg="assets/img/banner/breadcrumb-banner.jpg">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="breadcrumb-wrap text-center">
-                            <nav aria-label="breadcrumb">
-                                <ul class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Cart</li>
-                                </ul>
-                            </nav>
-                        </div>
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb-wrap">
+                        <nav aria-label="breadcrumb">
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Wishlist</li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="cart-main-wrapper section-gap">
+    </div>
+
+    <main class="main-content_wrapper">
+        <div class="wishlist-area section-padding">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="cart-table-area table-responsive">
-                            <table class="table table-bordered text-center">
-                                <thead>
-                                    <tr>
-                                        <th class="pro-thumbnail">Thumbnail</th>
-                                        <th class="pro-title">Product</th>
-                                        <th class="pro-price">Price</th>
-                                        <th class="pro-quantity">Quantity</th>
-                                        <th class="pro-subtotal">Total</th>
-                                        <th class="pro-remove">Remove</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="cart-items-body">
-                                    <tr class="cart-empty-row d-none">
-                                        <td colspan="6" class="text-center py-5">
-                                            <h3>Your cart is empty.</h3>
-                                            <p>Looks like you haven't added anything to your cart yet.</p>
-                                            <a href="shop.html" class="btn btn-sqr mt-3 btn-sqr-orange-cmn">Continue
-                                                Shopping</a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="cart-update-action d-flex justify-content-between mt-30">
-                            <div class="cart-clear">
-                                <button type="button" class="btn btn-sqr btn-sqr-orange-cmn" id="clear-cart-btn">Clear
-                                    Cart</button>
-                            </div>
-                            <div class="cart-continued">
-                                <a href="shop.html" class="btn btn-sqr btn-sqr-orange-cmn">Continue Shopping</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-5 ml-auto">
-                        <div class="cart-calculator-wrapper mt-50">
-                            <div class="cart-calculate-items">
-                                <h5>Cart Totals</h5>
-                                <div class="table-responsive">
-                                    <table class="table">
+                    <div class="col-12">
+                        <form action="#" class="wishlist-form">
+                            <div class="table-responsive">
+                                <table class="table table-bordered wishlist-table text-center">
+                                    <thead>
                                         <tr>
-                                            <td>Cart Subtotal</td>
-                                            <td class="subtotal-amount">₹0.00</td>
+                                            <th class="pro-thumbnail">Image</th>
+                                            <th class="pro-title">Product Name</th>
+                                            <th class="pro-price">Unit Price</th>
+                                            <th class="pro-addtocart">Add to Cart</th>
+                                            <th class="pro-remove">Remove</th>
                                         </tr>
-                                        <tr>
-                                            <td>Shipping</td>
-                                            <td>
-                                                <ul class="shipping-type">
-                                                    <li>
-                                                        <div class="custom-control custom-radio">
-                                                            <input type="radio" id="flat_rate" name="shipping_method"
-                                                                class="custom-control-input" value="flat_rate" checked>
-                                                            <label class="custom-control-label" for="flat_rate">Flat
-                                                                Rate: ₹100.00</label>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="custom-control custom-radio">
-                                                            <input type="radio" id="free_shipping"
-                                                                name="shipping_method" class="custom-control-input"
-                                                                value="free_shipping">
-                                                            <label class="custom-control-label" for="free_shipping">Free
-                                                                Shipping</label>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                        <tr class="total">
-                                            <th>Order Total</th>
-                                            <td class="total-amount">₹0.00</td>
-                                        </tr>
-                                    </table>
-                                </div>
+                                    </thead>
+                                    <tbody id="wishlist-items-body">
+                                    </tbody>
+                                </table>
                             </div>
-                            <a href="checkout.html" class="btn btn-sqr d-block btn-sqr-orange-cmn">Proceed to
-                                Checkout</a>
-                        </div>
+                            <div class="wishlist-empty-message d-none">
+                                <p>Your wishlist is currently empty.</p>
+                                <a href="shop.html" class="btn btn-primary btn-sqr-orange-cmn">Continue Shopping</a>
+                            </div>
+                            <div class="wishlist-action-buttons">
+                                <button type="button" id="clear-wishlist-btn"
+                                    class="btn btn-danger d-none btn-sqr-orange-cmn">Clear
+                                    Wishlist</button>
+                                <a href="shop.html" class="btn btn-secondary btn-sqr-orange-cmn">Continue Shopping</a>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -317,20 +298,139 @@
     <!-- End Footer Area Wrapper -->
 
 
-
     <div class="scroll-top not-visible">
         <i class="fa fa-angle-up"></i>
     </div>
+
+    <div id="toaster-message">
+    </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-    <script src="js/active.js"></script>
     <script src="js/add-to-cart-handler.js"></script>
-    <script src="js/cart-handler.js"></script>
     <script src="js/wishlist-handler.js"></script>
+    <script src="js/active.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const wishlistItemsBody = document.getElementById("wishlist-items-body");
+            const wishlistEmptyMessage = document.querySelector(".wishlist-empty-message");
+            const clearWishlistBtn = document.getElementById("clear-wishlist-btn");
+
+            function renderWishlistItems() {
+                const wishlist = window.getWishlist(); // Use the global function from wishlist-handler.js
+                wishlistItemsBody.innerHTML = ""; // Clear existing rows
+
+                if (wishlist.length === 0) {
+                    wishlistEmptyMessage.classList.remove("d-none");
+                    clearWishlistBtn.classList.add("d-none"); // Hide clear button if empty
+                } else {
+                    wishlistEmptyMessage.classList.add("d-none");
+                    clearWishlistBtn.classList.remove("d-none"); // Show clear button if not empty
+                    wishlist.forEach(item => {
+                        const row = document.createElement("tr");
+                        row.dataset.id = item.id; // Store product ID
+                        row.innerHTML = `
+                                <td class="pro-thumbnail"><a href="product-details.html?id=${item.id}"><img src="${item.img}" alt="${item.title}"></a></td>
+                                <td class="pro-title"><a href="product-details.html?id=${item.id}">${item.title}</a></td>
+                                <td class="pro-price"><span>₹${parseFloat(item.price).toFixed(2)}</span></td>
+                                <td class="pro-addtocart">
+                                    <a href="#" class="btn btn-sqr add-to-cart-btn btn-sqr-orange-cmn"
+                                       data-id="${item.id}"
+                                       data-title="${item.title}"
+                                       data-price="${item.price}"
+                                       data-img="${item.img}"
+                                       title="Add To Cart">Add to Cart</a>
+                                </td>
+                                <td class="pro-remove">
+                                    <a href="#" class="remove-from-wishlist" data-id="${item.id}" title="Remove Item">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
+                            `;
+                        wishlistItemsBody.appendChild(row);
+                    });
+                }
+                // Re-initialize tooltips after content is loaded
+                // Make sure your active.js or a similar file handles $('[data-bs-toggle="tooltip"]').tooltip();
+                // Or uncomment this if it's not handled elsewhere:
+                // $('[data-bs-toggle="tooltip"]').tooltip();
+            }
+
+            // Event listener for removing individual items from wishlist
+            wishlistItemsBody.addEventListener("click", function (e) {
+                const removeBtn = e.target.closest(".remove-from-wishlist");
+                if (removeBtn) {
+                    e.preventDefault();
+                    const productIdToRemove = removeBtn.dataset.id;
+                    let wishlist = window.getWishlist();
+                    const removedItemTitle = removeBtn.closest('tr').querySelector('.pro-title a').textContent;
+                    wishlist = wishlist.filter(item => item.id !== productIdToRemove);
+                    window.setWishlist(wishlist); // Update localStorage
+                    window.showToaster(`${removedItemTitle} removed from wishlist.`);
+                    renderWishlistItems(); // Re-render the table
+                }
+            });
+
+            // Event listener for clearing the entire wishlist
+            if (clearWishlistBtn) {
+                clearWishlistBtn.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    if (confirm("Are you sure you want to clear your entire wishlist?")) {
+                        window.setWishlist([]); // Set wishlist to an empty array
+                        window.showToaster("Your wishlist has been cleared.");
+                        renderWishlistItems(); // Re-render the table
+                    }
+                });
+            }
+
+
+            // Initial render when the page loads
+            renderWishlistItems();
+        });
+    </script>
+
+    <!-- Code injected by live-server -->
+    <script>
+        // <![CDATA[  <-- For SVG support
+        if ('WebSocket' in window) {
+            (function () {
+                function refreshCSS() {
+                    var sheets = [].slice.call(document.getElementsByTagName("link"));
+                    var head = document.getElementsByTagName("head")[0];
+                    for (var i = 0; i < sheets.length; ++i) {
+                        var elem = sheets[i];
+                        var parent = elem.parentElement || head;
+                        parent.removeChild(elem);
+                        var rel = elem.rel;
+                        if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+                            var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+                            elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+                        }
+                        parent.appendChild(elem);
+                    }
+                }
+                var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+                var address = protocol + window.location.host + window.location.pathname + '/ws';
+                var socket = new WebSocket(address);
+                socket.onmessage = function (msg) {
+                    if (msg.data == 'reload') window.location.reload();
+                    else if (msg.data == 'refreshcss') refreshCSS();
+                };
+                if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+                    console.log('Live reload enabled.');
+                    sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+                }
+            })();
+        }
+        else {
+            console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+        }
+        // ]]>
+    </script>
 </body>
 
 </html>

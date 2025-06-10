@@ -229,11 +229,11 @@ button.navbar-toggler{
     padding: 8px 15px;
     border: 1px solid #e0e0e0;
     margin-bottom: 5px;
-    border-radius: 5px;
     text-decoration: none;
     color: #333;
     transition: all 0.3s ease;
     text-align: center;
+    border-radius: 5px;
 }
 
 .sidebar-single .product-categories li a.active,
@@ -243,6 +243,7 @@ button.navbar-toggler{
     background-color: var(--primary-color); /* Your theme's primary color */
     color: #fff;
     border-color: var(--primary-color);
+    border-color: white;
 }
 
 .sidebar-single .size-filter li {
@@ -358,6 +359,21 @@ button.navbar-toggler{
     background: var(--primary-color);
     color: var(--white);
     border: 1px solid var(--primary-color);
+}
+
+
+#main-product-add-to-cart-btn{
+    background-color: var(--primary-color);
+    color: #fff;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+
+    transition: all .5s linear;
+}
+
+#main-product-add-to-cart-btn:hover{
+    background: var(--text-color-black);
+    color: var(--primary-color);
 }
 
 /*********** PRODUCT-DETAILS PAGE CSS ENDS HERE *****************/
@@ -624,7 +640,43 @@ button.navbar-toggler{
     margin-top: 0;
 }
 
+.payment-method{
+    margin-bottom: 50px;
+}
+
 /************ CHECKOUT PAGE CSS ENDS HERE ****************/
+
+
+/***********  WISHliST PAGE CSS STARTS HERE *************/
+.cart-update-action .btn-sqr-orange-cmn,
+.btn-sqr-orange-cmn {
+    background-color: var(--primary-color); /* Primary color */
+    color: #fff;
+    border: 1px solid var(--primary-color);
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-decoration: none; /* For continue shopping link */
+
+    transition: all 0.4s linear;
+}
+.cart-update-action .btn-sqr-orange-cmn:hover,
+.btn-sqr-orange-cmn:hover {
+    background: var(--text-color-black);
+    color: var(--primary-color);
+}
+
+.wishlist-table .pro-title a,
+.wishlist-table .pro-remove a {
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/*********** WISHLIST PAGE CSS ENDS HERE *************/
 
 
 

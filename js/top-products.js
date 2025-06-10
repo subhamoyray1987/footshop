@@ -52,8 +52,15 @@ function renderTopProducts(products) {
                     ${oldPriceHTML}
                 </div>
                 <div class="product-action-link">
-                    <a href="#" data-bs-toggle="tooltip" title="Wishlist">
-                    <i class="ion-android-favorite-outline"></i>
+                    <a href="#" 
+                        class="wishlist-btn" 
+                        data-id="${product.id}" 
+                        data-title="${product.title}" 
+                        data-price="${finalPrice}" 
+                        data-img="${product.images[0]}" 
+                        data-bs-toggle="tooltip" 
+                        title="Wishlist">
+                        <i class="ion-android-favorite-outline"></i>
                     </a>
 
                     <a href="#" class="add-to-cart-btn"
@@ -129,7 +136,14 @@ function renderTopSellers(products) {
                     </div>
                     <div class="ratings">${stars}</div>
                     <div class="product-link-2">
-                        <a href="#" data-bs-toggle="tooltip" title="Wishlist">
+                        <a href="#" 
+                        class="wishlist-btn" 
+                        data-id="${product.id}" 
+                        data-title="${product.title}" 
+                        data-price="${finalPrice}" 
+                        data-img="${product.images[0]}" 
+                        data-bs-toggle="tooltip" 
+                        title="Wishlist">
                         <i class="ion-android-favorite-outline"></i>
                         </a>
 
