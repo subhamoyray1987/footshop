@@ -2308,7 +2308,7 @@ fieldset legend {
   position: relative;
 }
 .testimonial-item {
-  padding: 35px 0px;
+  padding: 0 0px 35px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

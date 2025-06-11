@@ -126,6 +126,7 @@
                                         <div class="single-input-item">
                                             <label for="f_name" class="required">First Name</label>
                                             <input type="text" id="f_name" required>
+                                            <div class="invalid-feedback">Please enter your first name.</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -194,6 +195,44 @@
                                             <input type="text" id="phone" required>
                                         </div>
                                     </div>
+
+                                    <div class="payment-info-wrap mt-4">
+                                        <h5 class="checkout-title">Payment Information</h5>
+                                        <div class="row">
+                                            <div class="single-input-item">
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="card_number" class="required">Card Number</label>
+                                                    <input type="text" id="card_number" name="card_number"
+                                                        class="form-control" maxlength="19"
+                                                        placeholder="1234 5678 9012 3456" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="single-input-item d-flex">
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="expiry_month" class="required">Expiry Month</label>
+                                                    <input type="text" id="expiry_month" name="expiry_month"
+                                                        class="form-control" maxlength="2" placeholder="MM" required>
+                                                </div>
+
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="expiry_year" class="required">Expiry Year</label>
+                                                    <input type="text" id="expiry_year" name="expiry_year"
+                                                        class="form-control" maxlength="4" placeholder="YYYY" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="single-input-item">
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="cvv" class="required">CVV</label>
+                                                    <input type="password" id="cvv" name="cvv" class="form-control"
+                                                        maxlength="4" placeholder="123" required>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
 
                                 </div>
                             </form>
@@ -441,8 +480,10 @@
 
     <script src="js/active.js"></script>
     <script src="js/add-to-cart-handler.js"></script>
-    <script src="js/checkout-handler.js"></script>
     <script src="js/wishlist-handler.js"></script>
+    <script src="js/checkout-form-validation.js"></script>
+    <script src="js/checkout-handler.js"></script>
+
 </body>
 
 </html>

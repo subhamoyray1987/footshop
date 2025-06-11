@@ -107,6 +107,7 @@
 .testimonial-area .slick-dots li{
     margin: 0 10px 0 0;
     border-radius: 5px;
+    font-size: 0;
 }
 
 .testimonial-area .slick-dots li button{
@@ -193,6 +194,10 @@ nav.navbar.navbar-expand-lg.sticky-top.header-main-area.sticky{
 
 button.navbar-toggler{
     padding: 0;
+}
+
+.section-gap-40{
+    padding: 40px 0;
 }
 
 /*********** COMMON PAGE CSS ENDS HERE *****************/
@@ -642,6 +647,17 @@ button.navbar-toggler{
 
 .payment-method{
     margin-bottom: 50px;
+}
+
+
+.single-input-item input:not([type=checkbox]).is-invalid, 
+.single-input-item textarea.is-invalid{
+    border:1px solid #f00
+}
+
+.single-input-item input:not([type=checkbox]).is-valid, 
+.single-input-item textarea.is-valid{
+    border:1px solid #0f0
 }
 
 /************ CHECKOUT PAGE CSS ENDS HERE ****************/
