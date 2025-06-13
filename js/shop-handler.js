@@ -1,3 +1,4 @@
+// js/shop-handler.js
 document.addEventListener("DOMContentLoaded", function() {
     let allProducts = []; // Stores all products fetched from JSON
     let currentFilters = {
@@ -28,146 +29,122 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(products => {
             allProducts = products;
             initializeFilters(products); // Sets up initial filter states including URL params
-            applyFiltersAndRenderProducts(); // Renders products based on initial filters
+            applyFiltersAndRenderProducts();
         })
         .catch(error => {
-            console.error("Error fetching products:", error);
-            productListContainer.innerHTML = "<p>Error loading products. Please try again later.</p>";
-            noProductsMessage.style.display = "block"; // Show error message if products fail to load
+            console.error("Error loading products:", error);
+            productListContainer.innerHTML = "<p class='text-danger'>Failed to load products. Please try again later.</p>";
         });
 
+    // Function to initialize filters based on data and URL parameters
     function initializeFilters(products) {
-        // Determine the overall min and max prices from the data for the slider
+        // Determine max price from products
         const prices = products.map(p => parseFloat(p.price.replace(/[₹,]/g, '')));
-        const minOverallPrice = Math.floor(Math.min(...prices));
-        const maxOverallPrice = Math.ceil(Math.max(...prices));
+        const maxProductPrice = prices.length ? Math.max(...prices) : 5000;
+        currentFilters.maxPrice = maxProductPrice; // Set initial max price
 
-        currentFilters.minPrice = minOverallPrice;
-        currentFilters.maxPrice = maxOverallPrice;
+        // Initialize price range slider
+        $(priceRangeSlider).ionRangeSlider({
+            type: "double",
+            min: 0,
+            max: maxProductPrice,
+            from: 0,
+            to: maxProductPrice,
+            prefix: "₹",
+            skin: "round",
+            onStart: function(data) {
+                minPriceDisplay.textContent = `₹${data.from}`;
+                maxPriceDisplay.textContent = `₹${data.to}`;
+            },
+            onChange: function(data) {
+                minPriceDisplay.textContent = `₹${data.from}`;
+                maxPriceDisplay.textContent = `₹${data.to}`;
+                currentFilters.minPrice = data.from;
+                currentFilters.maxPrice = data.to;
+                applyFiltersAndRenderProducts();
+            }
+        });
 
-        // Initialize Ion.RangeSlider
-        if (priceRangeSlider) {
-            $(priceRangeSlider).ionRangeSlider({
-                type: "double",
-                min: minOverallPrice,
-                max: maxOverallPrice,
-                from: currentFilters.minPrice,
-                to: currentFilters.maxPrice,
-                prefix: "₹",
-                onFinish: function(data) {
-                    currentFilters.minPrice = data.from;
-                    currentFilters.maxPrice = data.to;
-                    applyFiltersAndRenderProducts();
-                }
-            });
-            // Update display initially
-            minPriceDisplay.textContent = `₹${currentFilters.minPrice}`;
-            maxPriceDisplay.textContent = `₹${currentFilters.maxPrice}`;
-        }
+        // Populate size filters dynamically
+        const allSizes = [...new Set(products.flatMap(p => p.size || []))].sort((a, b) => a - b);
+        sizeFilterContainer.innerHTML = '<li><a href="#" class="size-filter-btn active" data-size="all">All</a></li>';
+        allSizes.forEach(size => {
+            if (size !== null && size !== undefined && size !== '') { // Ensure size is valid
+                sizeFilterContainer.innerHTML += `<li><a href="#" class="size-filter-btn" data-size="${size}">${size}</a></li>`;
+            }
+        });
 
-
-        // Handle URL parameters for initial filters
+        // Check URL parameters for initial filters
         const urlParams = new URLSearchParams(window.location.search);
+        const categoryParam = urlParams.get('category');
+        const sizeParam = urlParams.get('size');
 
-        const categoryParam = urlParams.get("category");
         if (categoryParam) {
-            const normalizedCategory = categoryParam.toLowerCase();
-            currentFilters.category = normalizedCategory;
-            // Activate the corresponding category button
+            currentFilters.category = categoryParam.toLowerCase();
             categoryFilters.forEach(btn => {
-                if (btn.dataset.category.toLowerCase() === normalizedCategory) {
-                    btn.classList.add("active");
+                if (btn.dataset.category.toLowerCase() === currentFilters.category) {
+                    btn.classList.add('active');
                 } else {
-                    btn.classList.remove("active");
+                    btn.classList.remove('active');
                 }
             });
-        } else {
-             // If no category param, ensure "All" is active by default
-             const allCategoryBtn = document.querySelector('.category-filter[data-category="All"]');
-             if(allCategoryBtn) allCategoryBtn.classList.add("active");
         }
 
-
-        const sizeParam = urlParams.get("size");
         if (sizeParam) {
-            currentFilters.size = sizeParam;
-            // Activate the corresponding size button
+            currentFilters.size = sizeParam.toLowerCase();
             sizeFilterContainer.querySelectorAll(".size-filter-btn").forEach(btn => {
-                if (btn.dataset.size === sizeParam) {
-                    btn.classList.add("active");
+                if (btn.dataset.size.toLowerCase() === currentFilters.size) {
+                    btn.classList.add('active');
                 } else {
-                    btn.classList.remove("active");
+                    btn.classList.remove('active');
                 }
             });
-        } else {
-             // If no size param, ensure "All" size button is active by default
-             const allSizeBtn = document.querySelector('.size-filter-btn[data-size="All"]');
-             if(allSizeBtn) allSizeBtn.classList.add("active");
         }
-
-        const minPriceParam = parseFloat(urlParams.get("min_price"));
-        const maxPriceParam = parseFloat(urlParams.get("max_price"));
-        if (!isNaN(minPriceParam)) {
-            currentFilters.minPrice = minPriceParam;
-        }
-        if (!isNaN(maxPriceParam)) {
-            currentFilters.maxPrice = maxPriceParam;
-        }
-
-        // Update price slider if params are used
-        if ((!isNaN(minPriceParam) || !isNaN(maxPriceParam)) && priceRangeSlider) {
-             const slider = $(priceRangeSlider).data("ionRangeSlider");
-             if (slider) {
-                 slider.update({
-                     from: currentFilters.minPrice,
-                     to: currentFilters.maxPrice
-                 });
-             }
-         }
-         minPriceDisplay.textContent = `₹${currentFilters.minPrice}`;
-         maxPriceDisplay.textContent = `₹${currentFilters.maxPrice}`;
     }
 
-    function applyFiltersAndRenderProducts() {
-        let filteredProducts = allProducts.filter(p => {
-            const productPrice = parseFloat(p.price.replace(/[₹,]/g, ''));
-            const productCategory = p.category ? p.category.toLowerCase() : '';
-            const productSizes = Array.isArray(p.size) ? p.size.map(s => String(s)) : [];
+
+    // Function to filter products based on currentFilters
+    function filterProducts(products) {
+        return products.filter(p => {
+            const cleanPrice = parseFloat(p.price.replace(/[₹,]/g, ''));
 
             // Category filter
-            if (currentFilters.category && currentFilters.category !== "all" && productCategory !== currentFilters.category) {
+            if (currentFilters.category !== "all" && p.category && p.category.toLowerCase() !== currentFilters.category) {
                 return false;
             }
 
             // Size filter
-            if (currentFilters.size && currentFilters.size !== "All" && !productSizes.includes(String(currentFilters.size))) {
-                return false;
+            if (currentFilters.size && currentFilters.size !== "all") {
+                const parsedFilterSize = parseInt(currentFilters.size);
+                // Ensure p.size is an array and contains the filtered size
+                if (!Array.isArray(p.size) || !p.size.includes(parsedFilterSize)) {
+                    return false;
+                }
             }
 
+
             // Price range filter
-            if (productPrice < currentFilters.minPrice || productPrice > currentFilters.maxPrice) {
+            if (cleanPrice < currentFilters.minPrice || cleanPrice > currentFilters.maxPrice) {
                 return false;
             }
 
             return true;
         });
+    }
 
-        // Sort products - you can add sorting logic here if needed
-        // For example:
-        // filteredProducts.sort((a, b) => parseFloat(a.price.replace(/[₹,]/g, '')) - parseFloat(b.price.replace(/[₹,]/g, '')));
-
-        productListContainer.innerHTML = ""; // Clear current products
-        if (filteredProducts.length === 0) {
-            noProductsMessage.style.display = "block"; // Show no products message
-            totalProductsFoundEl.textContent = "0"; // Update product count
+    // Function to render products
+    function renderProducts(products) {
+        productListContainer.innerHTML = ""; // Clear existing products
+        if (products.length === 0) {
+            noProductsMessage.classList.remove("d-none");
+            totalProductsFoundEl.textContent = "0";
             return;
         } else {
-            noProductsMessage.style.display = "none"; // Hide no products message
-            totalProductsFoundEl.textContent = filteredProducts.length; // Update product count
+            noProductsMessage.classList.add("d-none");
+            totalProductsFoundEl.textContent = products.length;
         }
 
-
-        filteredProducts.forEach(p => {
+        products.forEach(p => {
             const cleanPrice = parseFloat(p.price.replace(/[₹,]/g, ''));
             let finalPrice = cleanPrice;
             let badge = "";
@@ -175,29 +152,29 @@ document.addEventListener("DOMContentLoaded", function() {
 
             if (p.discounted && p.discount) {
                 finalPrice = Math.round(cleanPrice * (1 - p.discount / 100));
-                badge = `<div class=\"product-badge bg-danger text-white position-absolute top-0 start-0 m-2 p-1 px-2 rounded\">${p.discount}% OFF</div>`;
-                oldPriceHTML = `<span class=\"price-old\"><del>₹${cleanPrice}</del></span>`;
+                badge = `<div class="product-badge bg-danger text-white position-absolute top-0 start-0 m-2 p-1 px-2 rounded">${p.discount}% OFF</div>`;
+                oldPriceHTML = `<span class="price-old"><del>₹${cleanPrice.toFixed(2)}</del></span>`;
             }
 
             const starRating = p.rating >= 4
-                ? '<div class=\"ratings\">' + '<span><i class=\"ion-android-star\"></i></span>'.repeat(5) + '</div>'
-                : '<div class=\"ratings\">' + '<span><i class=\"ion-android-star\"></i></span>'.repeat(Math.floor(p.rating)) + '<span><i class=\"ion-android-star-half\"></i></span>'.repeat(p.rating % 1 !== 0 ? 1 : 0) + '<span><i class=\"ion-android-star-outline\"></i></span>'.repeat(5 - Math.ceil(p.rating)) + '</div>';
+                ? '<div class="ratings">' + '<span><i class="ion-android-star"></i></span>'.repeat(5) + '</div>'
+                : '<div class="ratings">' + '<span><i class="ion-android-star"></i></span>'.repeat(Math.round(p.rating)) + '<span><i class="ion-android-star-outline"></i></span>'.repeat(5 - Math.round(p.rating)) + '</div>';
 
             const productHtml = `
                 <div class="col">
-                    <div class="product-item mb-50">
+                    <div class="product-item">
                         <div class="product-thumb">
-                            ${badge}
                             <a href="product-details.html?id=${p.id}">
-                                <img src="${p.images[0]}" alt="product thumb">
+                                <img src="${p.images[0]}" alt="${p.title}">
                             </a>
+                            ${badge}
                         </div>
                         <div class="product-content">
                             <h5 class="product-name">
                                 <a href="product-details.html?id=${p.id}">${p.title}</a>
                             </h5>
                             <div class="price-box">
-                                <span class="price-regular">₹${finalPrice}</span>
+                                <span class="price-regular">₹${finalPrice.toFixed(2)}</span>
                                 ${oldPriceHTML}
                             </div>
                             ${starRating}
@@ -205,21 +182,22 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <a href="#" class="wishlist-btn"
                                    data-id="${p.id}"
                                    data-title="${p.title}"
-                                   data-price="${finalPrice}"
+                                   data-price="${finalPrice.toFixed(2)}"
                                    data-img="${p.images[0]}"
                                    data-bs-toggle="tooltip" title="Wishlist">
-                                    <i class="ion-android-favorite-outline"></i>
+                                   <i class="ion-android-favorite-outline"></i>
                                 </a>
                                 <a href="#" class="add-to-cart-btn"
-                                    data-id="${p.id}"
-                                    data-title="${p.title}"
-                                    data-price="${finalPrice}"
-                                    data-img="${p.images[0]}"
-                                    data-bs-toggle="tooltip" title="Add To Cart">
-                                    <i class="ion-bag"></i>
+                                   data-id="${p.id}"
+                                   data-title="${p.title}"
+                                   data-price="${finalPrice.toFixed(2)}"
+                                   data-img="${p.images[0]}"
+                                   data-size="${p.size && p.size.length > 0 ? p.size[0] : ''}" 
+                                   data-bs-toggle="tooltip" title="Add To Cart">
+                                   <i class="ion-bag"></i>
                                 </a>
                                 <a href="product-details.html?id=${p.id}">
-                                    <span data-bs-toggle="tooltip" title="Quick View"><i class="ion-ios-eye-outline"></i></span>
+                                  <span data-bs-toggle="tooltip" title="Quick View"><i class="ion-ios-eye-outline"></i></span>
                                 </a>
                             </div>
                         </div>
@@ -232,6 +210,12 @@ document.addEventListener("DOMContentLoaded", function() {
         $('[data-bs-toggle="tooltip"]').tooltip();
     }
 
+    // Function to apply all filters and re-render products
+    function applyFiltersAndRenderProducts() {
+        const filteredProducts = filterProducts(allProducts);
+        renderProducts(filteredProducts);
+    }
+
     // Event Listeners for Filters
     // Category Filter Buttons
     categoryFilters.forEach(btn => {
@@ -239,7 +223,7 @@ document.addEventListener("DOMContentLoaded", function() {
             e.preventDefault();
             categoryFilters.forEach(b => b.classList.remove("active")); // Remove active from all
             this.classList.add("active"); // Add active to clicked one
-            currentFilters.category = this.dataset.category.toLowerCase(); // Store as lowercase
+            currentFilters.category = this.dataset.category.toLowerCase(); // Update filter state
             applyFiltersAndRenderProducts(); // Apply filters and re-render
         });
     });
@@ -251,11 +235,37 @@ document.addEventListener("DOMContentLoaded", function() {
         if (target) {
             sizeFilterContainer.querySelectorAll(".size-filter-btn").forEach(b => b.classList.remove("active"));
             target.classList.add("active");
-            currentFilters.size = target.dataset.size === "all" ? null : target.dataset.size; // "all" means no specific size filter
+            // Set currentFilters.size as a string, but make sure "all" is null
+            currentFilters.size = target.dataset.size === "all" ? null : target.dataset.size;
             applyFiltersAndRenderProducts();
         }
     });
 
     // The initial URL parameter handling is now integrated within `initializeFilters` for better flow.
     // This ensures `currentFilters` are set correctly before the first `applyFiltersAndRenderProducts()` call.
+
+
+    const toggleBtn = document.getElementById("filter-toggle");
+        const sidebar = document.querySelector(".sidebar-wrapper");
+        const backdrop = document.createElement("div");
+        backdrop.classList.add("sidebar-backdrop");
+
+        document.body.appendChild(backdrop);
+
+        toggleBtn?.addEventListener("click", function () {
+            sidebar.classList.add("open");
+            backdrop.classList.add("show");
+        });
+
+        // Close on backdrop click or filter option click
+        backdrop.addEventListener("click", closeSidebar);
+        // Also close sidebar when a category or size filter is clicked on mobile
+        sidebar.querySelectorAll("a.category-filter, a.size-filter-btn").forEach(link => {
+            link.addEventListener("click", closeSidebar);   
+        });
+
+        function closeSidebar() {
+            sidebar.classList.remove("open");
+            backdrop.classList.remove("show");
+        }
 });
