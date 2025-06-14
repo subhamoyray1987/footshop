@@ -66,7 +66,7 @@
 
                 <ul class="navbar-nav ms-auto header-configure-area">
                     <li class="nav-item">
-                        <a class="nav-link offcanvas-btn" href="#">
+                        <a class="nav-link offcanvas-btn search-trigger" href="#">
                             <i class="ion-ios-search-strong"></i>
                         </a>
                     </li>
@@ -318,9 +318,33 @@
 
 
 
+
     <div class="scroll-top not-visible">
         <i class="fa fa-angle-up"></i>
     </div>
+
+
+    <div class=" offcanvas-search-wrapper">
+        <div class="offcanvas-btn-close"><i class="ion-android-close"></i></div>
+        <div class="offcanvas-search-box">
+            <div class="search-content">
+                <h2 class="search-heading">What are you looking for?</h2>
+                <form id="global-search-form" class="search-form">
+                    <input type="text" id="global-search-input"
+                        placeholder="Search by category, size or price (e.g. sports, 8, 1000-2000)" />
+                    <button class="search-btn" type="submit">
+                        <i class="ion-ios-search-strong"></i> Search
+                    </button>
+                </form>
+                <p class="search-hint">
+                    Tip: You can combine filters like <strong>formal 9 1500-3000</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -331,6 +355,8 @@
     <script src="js/add-to-cart-handler.js"></script>
     <script src="js/cart-handler.js"></script>
     <script src="js/wishlist-handler.js"></script>
+    <script src="js/global-search.js"></script>
+
 </body>
 
 </html>

@@ -1,14 +1,14 @@
 // js/shop-handler.js
+
 document.addEventListener("DOMContentLoaded", function() {
-    let allProducts = []; // Stores all products fetched from JSON
+    let allProducts = [];
     let currentFilters = {
-        category: "all", // Changed to lowercase to match your data-attributes
-        size: null, // Specific size, e.g., "7", "8", null for all
+        category: "all",
+        size: null,
         minPrice: 0,
-        maxPrice: 5000 // Default max, will be updated from data
+        maxPrice: 5000
     };
 
-    // DOM Elements
     const productListContainer = document.getElementById("product-list-container");
     const categoryFilters = document.querySelectorAll(".category-filter");
     const sizeFilterContainer = document.querySelector(".size-filter");
@@ -18,17 +18,14 @@ document.addEventListener("DOMContentLoaded", function() {
     const totalProductsFoundEl = document.querySelector(".total-products-found span");
     const noProductsMessage = document.querySelector(".no-products-message");
 
-    // Fetch products and initialize
     fetch("js/shoelist.json")
         .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             return response.json();
         })
         .then(products => {
             allProducts = products;
-            initializeFilters(products); // Sets up initial filter states including URL params
+            initializeFilters(products);
             applyFiltersAndRenderProducts();
         })
         .catch(error => {
@@ -36,14 +33,11 @@ document.addEventListener("DOMContentLoaded", function() {
             productListContainer.innerHTML = "<p class='text-danger'>Failed to load products. Please try again later.</p>";
         });
 
-    // Function to initialize filters based on data and URL parameters
     function initializeFilters(products) {
-        // Determine max price from products
         const prices = products.map(p => parseFloat(p.price.replace(/[₹,]/g, '')));
         const maxProductPrice = prices.length ? Math.max(...prices) : 5000;
-        currentFilters.maxPrice = maxProductPrice; // Set initial max price
+        currentFilters.maxPrice = maxProductPrice;
 
-        // Initialize price range slider
         $(priceRangeSlider).ionRangeSlider({
             type: "double",
             min: 0,
@@ -65,19 +59,20 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
 
-        // Populate size filters dynamically
         const allSizes = [...new Set(products.flatMap(p => p.size || []))].sort((a, b) => a - b);
         sizeFilterContainer.innerHTML = '<li><a href="#" class="size-filter-btn active" data-size="all">All</a></li>';
         allSizes.forEach(size => {
-            if (size !== null && size !== undefined && size !== '') { // Ensure size is valid
+            if (size !== null && size !== undefined && size !== '') {
                 sizeFilterContainer.innerHTML += `<li><a href="#" class="size-filter-btn" data-size="${size}">${size}</a></li>`;
             }
         });
 
-        // Check URL parameters for initial filters
         const urlParams = new URLSearchParams(window.location.search);
+
         const categoryParam = urlParams.get('category');
         const sizeParam = urlParams.get('size');
+        const minPriceParam = urlParams.get('minPrice');
+        const maxPriceParam = urlParams.get('maxPrice');
 
         if (categoryParam) {
             currentFilters.category = categoryParam.toLowerCase();
@@ -100,30 +95,40 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             });
         }
+
+        if (minPriceParam && !isNaN(minPriceParam)) {
+            currentFilters.minPrice = parseInt(minPriceParam);
+        }
+        if (maxPriceParam && !isNaN(maxPriceParam)) {
+            currentFilters.maxPrice = parseInt(maxPriceParam);
+        }
+
+        const priceSliderInstance = $(priceRangeSlider).data("ionRangeSlider");
+        if (priceSliderInstance) {
+            priceSliderInstance.update({
+                from: currentFilters.minPrice,
+                to: currentFilters.maxPrice
+            });
+            minPriceDisplay.textContent = `₹${currentFilters.minPrice}`;
+            maxPriceDisplay.textContent = `₹${currentFilters.maxPrice}`;
+        }
     }
 
-
-    // Function to filter products based on currentFilters
     function filterProducts(products) {
         return products.filter(p => {
             const cleanPrice = parseFloat(p.price.replace(/[₹,]/g, ''));
 
-            // Category filter
             if (currentFilters.category !== "all" && p.category && p.category.toLowerCase() !== currentFilters.category) {
                 return false;
             }
 
-            // Size filter
             if (currentFilters.size && currentFilters.size !== "all") {
                 const parsedFilterSize = parseInt(currentFilters.size);
-                // Ensure p.size is an array and contains the filtered size
                 if (!Array.isArray(p.size) || !p.size.includes(parsedFilterSize)) {
                     return false;
                 }
             }
 
-
-            // Price range filter
             if (cleanPrice < currentFilters.minPrice || cleanPrice > currentFilters.maxPrice) {
                 return false;
             }
@@ -132,9 +137,8 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Function to render products
     function renderProducts(products) {
-        productListContainer.innerHTML = ""; // Clear existing products
+        productListContainer.innerHTML = "";
         if (products.length === 0) {
             noProductsMessage.classList.remove("d-none");
             totalProductsFoundEl.textContent = "0";
@@ -206,66 +210,53 @@ document.addEventListener("DOMContentLoaded", function() {
             `;
             productListContainer.insertAdjacentHTML('beforeend', productHtml);
         });
-        // Re-initialize tooltips for newly rendered products
         $('[data-bs-toggle="tooltip"]').tooltip();
     }
 
-    // Function to apply all filters and re-render products
     function applyFiltersAndRenderProducts() {
         const filteredProducts = filterProducts(allProducts);
         renderProducts(filteredProducts);
     }
 
-    // Event Listeners for Filters
-    // Category Filter Buttons
     categoryFilters.forEach(btn => {
         btn.addEventListener("click", function(e) {
             e.preventDefault();
-            categoryFilters.forEach(b => b.classList.remove("active")); // Remove active from all
-            this.classList.add("active"); // Add active to clicked one
-            currentFilters.category = this.dataset.category.toLowerCase(); // Update filter state
-            applyFiltersAndRenderProducts(); // Apply filters and re-render
+            categoryFilters.forEach(b => b.classList.remove("active"));
+            this.classList.add("active");
+            currentFilters.category = this.dataset.category.toLowerCase();
+            applyFiltersAndRenderProducts();
         });
     });
 
-    // Size Filter Buttons (uses event delegation on parent container)
     sizeFilterContainer.addEventListener("click", function(e) {
         e.preventDefault();
-        const target = e.target.closest(".size-filter-btn"); // Find the clicked button or its parent
+        const target = e.target.closest(".size-filter-btn");
         if (target) {
             sizeFilterContainer.querySelectorAll(".size-filter-btn").forEach(b => b.classList.remove("active"));
             target.classList.add("active");
-            // Set currentFilters.size as a string, but make sure "all" is null
             currentFilters.size = target.dataset.size === "all" ? null : target.dataset.size;
             applyFiltersAndRenderProducts();
         }
     });
 
-    // The initial URL parameter handling is now integrated within `initializeFilters` for better flow.
-    // This ensures `currentFilters` are set correctly before the first `applyFiltersAndRenderProducts()` call.
-
-
     const toggleBtn = document.getElementById("filter-toggle");
-        const sidebar = document.querySelector(".sidebar-wrapper");
-        const backdrop = document.createElement("div");
-        backdrop.classList.add("sidebar-backdrop");
+    const sidebar = document.querySelector(".sidebar-wrapper");
+    const backdrop = document.createElement("div");
+    backdrop.classList.add("sidebar-backdrop");
+    document.body.appendChild(backdrop);
 
-        document.body.appendChild(backdrop);
+    toggleBtn?.addEventListener("click", function () {
+        sidebar.classList.add("open");
+        backdrop.classList.add("show");
+    });
 
-        toggleBtn?.addEventListener("click", function () {
-            sidebar.classList.add("open");
-            backdrop.classList.add("show");
-        });
+    backdrop.addEventListener("click", closeSidebar);
+    sidebar.querySelectorAll("a.category-filter, a.size-filter-btn").forEach(link => {
+        link.addEventListener("click", closeSidebar);   
+    });
 
-        // Close on backdrop click or filter option click
-        backdrop.addEventListener("click", closeSidebar);
-        // Also close sidebar when a category or size filter is clicked on mobile
-        sidebar.querySelectorAll("a.category-filter, a.size-filter-btn").forEach(link => {
-            link.addEventListener("click", closeSidebar);   
-        });
-
-        function closeSidebar() {
-            sidebar.classList.remove("open");
-            backdrop.classList.remove("show");
-        }
+    function closeSidebar() {
+        sidebar.classList.remove("open");
+        backdrop.classList.remove("show");
+    }
 });

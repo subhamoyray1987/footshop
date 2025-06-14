@@ -200,6 +200,103 @@ button.navbar-toggler{
     padding: 40px 0;
 }
 
+
+
+
+
+
+/* OFFCANVAS SEARCH FULL SCREEN */
+.offcanvas-search-wrapper {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    overflow: auto;
+}
+
+.offcanvas-search-wrapper.canvas-open {
+    display: flex;
+}
+
+.offcanvas-search-box {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px 30px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+    max-width: 768px;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+}
+
+.offcanvas-search-box .search-content{
+    width: 100%;
+}
+
+.offcanvas-search-box input[type="text"] {
+    flex-grow: 1;
+    padding: 10px 15px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0px 0px 5px;
+    height: 48px;
+    color: var(--primary-color);
+}
+
+.offcanvas-search-box button.search-btn {
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 0px 5px 5px 0;
+    cursor: pointer;
+}
+
+.offcanvas-search-box button.search-btn:hover{
+    color: #fff;
+    box-shadow: 0 0 0 2px rgba(255, 94, 20, 0.2);
+}
+
+.offcanvas-btn-close {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    font-size: 32px;
+    color: var(--primary-color);
+    cursor: pointer;
+    z-index: 10000;
+}
+
+
+.search-heading {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 15px;
+}
+
+#global-search-form{
+    width: 100%;
+    display: flex;
+    margin-bottom: 15px;
+}
+.offcanvas-search-box input[type="text"]::placeholder{
+    color: var(--primary-color);
+}
+
+
+.offcanvas-search-box input[type="text"]:focus{
+    border-color: #ff5e14;
+    box-shadow: 0 0 0 2px rgba(255, 94, 20, 0.2);
+    outline: none;
+}
 /*********** COMMON PAGE CSS ENDS HERE *****************/
 
 
@@ -727,16 +824,31 @@ button.navbar-toggler{
     }
   }
 
-
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 991px) {
     button.navbar-toggler{
         position: absolute;
         right: 20px;
-        border:1px solid #f00
+        border:1px solid #f00;
+        top: 15px;
     }
 
     ul.navbar-nav.ms-auto.header-configure-area{
         position: absolute;
         right: 60px;
+        top: 10px;
     }
+}
+
+@media only screen and (max-width: 767px) {
+
+
+    /* div#mainNavbarCollapse {
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        z-index: 10;
+        top: 57px;
+        left: 0;
+        background: #fff;
+    } */
 }
