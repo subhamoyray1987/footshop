@@ -134,6 +134,10 @@
 
 
 /*********** COMMON PAGE CSS STARTS HERE *****************/
+
+
+
+
 .breadcrumb-area{
     background: #eeeeee;
 }
@@ -168,8 +172,59 @@
 }
 
 
+/* Custom Hamburger to Cross Icon */
+.custom-toggler {
+    padding: 0; /* Remove default padding */
+    border: none; /* Remove default border */
+    background-color: transparent; /* Ensure no background */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 32px; /* Adjust as needed */
+    height: 30px; /* Adjust as needed for 2 lines */
+    position: relative;
+    cursor: pointer;
+    padding: 7px 0;
+}
+
+.custom-toggler:focus {
+    box-shadow: none; /* Remove focus outline */
+}
+
+.custom-toggler .line {
+    display: block;
+    width: 100%;
+    height: 4px; /* Thickness of the lines */
+    background-color: var(--primary-color); /* Adjust color as needed, using your variable */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Initial state for two lines */
+.custom-toggler .line-1 {
+    transform-origin: left center;
+}
+
+.custom-toggler .line-2 {
+    transform-origin: left center;
+}
+
+
+/* When the navbar-toggler is expanded (menu is open) */
+.custom-toggler[aria-expanded="true"] .line-1 {
+    transform: rotate(45deg) translate(-6px, 0px); /* Adjust translate for precise alignment */
+}
+
+.custom-toggler[aria-expanded="true"] .line-2 {
+    transform: rotate(-45deg) translate(-8px, 1px); /* Adjust translate for precise alignment */
+}
+
+
 nav.navbar.navbar-expand-lg.sticky-top.header-main-area.sticky{
-    padding: 0;
+    padding: 7px 0;
+}
+
+nav.navbar.navbar-expand-lg.sticky-top.header-main-area.sticky .container{
+    position: relative;
 }
 
 .header-configure-area li a{
@@ -193,7 +248,7 @@ nav.navbar.navbar-expand-lg.sticky-top.header-main-area.sticky{
 }
 
 button.navbar-toggler{
-    padding: 0;
+    /* padding: 0; */
 }
 
 .section-gap-40{
@@ -792,6 +847,20 @@ button.navbar-toggler{
 /*********** WISHLIST PAGE CSS ENDS HERE *************/
 
 @media (max-width: 991px) {
+
+    div#mainNavbarCollapse{
+        margin-top: 15px;
+    }
+
+    .main-menu ul li a{
+        padding: 20px 15px !important;
+        background: #f9f9f9;
+        border-top: 1px solid #ddd;
+        /* border-bottom: 1px solid #ddd; */
+        border-radius: 0px;
+    }
+
+
     .sidebar-wrapper {
       position: fixed;
       top: 0;
@@ -806,6 +875,8 @@ button.navbar-toggler{
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
       transition: left 0.3s ease-in-out;
     }
+
+
   
     .sidebar-wrapper.open {
       left: 0;
@@ -828,7 +899,7 @@ button.navbar-toggler{
     button.navbar-toggler{
         position: absolute;
         right: 20px;
-        border:1px solid #f00;
+        /* border:1px solid #f00; */
         top: 15px;
     }
 
